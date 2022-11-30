@@ -1,19 +1,8 @@
-import { useState } from "react";
 
 
 const OpenClaimsTableRow = (openClaims) => {
 
-    const [show, setShow] = useState(false);
-    const [selectedData, setSelectedData] = useState({});
-  
-    const hanldeClick = (selectedRec) => {
-      setSelectedData(selectedRec);
-      setShow(true);
-    };
-  
-    const hideModal = () => {
-      setShow(false);
-    };
+    
     
     return (
     
@@ -22,7 +11,7 @@ const OpenClaimsTableRow = (openClaims) => {
         <td>{openClaims.insuranceType} Insurance</td>
         <td>{openClaims.surname}</td>
         <td>{openClaims.status}</td>
-        <td><button onClick={() => hanldeClick(openClaims)}className="tableButton" type="button" name="registerButton">OPEN</button></td>
+        <td><button className="tableButton" type="button" name="registerButton">OPEN</button></td>
         </tr>
         
     

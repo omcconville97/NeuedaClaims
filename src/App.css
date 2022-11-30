@@ -1,0 +1,166 @@
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  flex-direction: column;
+  align-items: center;
+  background: rgb(199, 200, 201); /*#e0a22e;*/ /* #757575; */
+}
+
+/* Content */
+.container {
+  max-width: fit-content;
+  display: flex;
+  padding: 1em 3em 2em 3em;
+  margin: 2.5em auto;
+  background-color: #fff;
+  border-radius: 4.5px;
+  box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+}
+
+form p {
+  font-size: 1.1em;
+  text-align: center;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+form label {
+  width: 300px;
+  display: block;
+  float: left;
+  margin-right: 10px;
+  font-size: 1.1em;
+  line-height: 2.1;
+}
+
+input,
+select {
+  margin-top: 10px;
+  display: block;
+  line-height: 1.5;
+  font-size: 1em;
+}
+
+.formTitle {
+  text-align: center;
+  font-size: 1.75em;
+  text-decoration: underline;
+  text-decoration-color: #ffa500;
+}
+
+.formSubTitle {
+  text-align: center;
+  font-weight: 100;
+}
+
+button {
+  display: block;
+  margin-top: 15px;
+  color: #00000d;
+  background-color: #ffa500;
+  font-size: 15px;
+  border: 1px solid #ffb11f;
+  padding: 10px 25px;
+  letter-spacing: 0.75px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+button:hover {
+  color: #000000;
+  background-color: #fdb32b;
+}
+
+.tableContainer {
+  max-width: fit-content;
+  padding: 0.25em 3em 2em 3em;
+  margin: 2.5em auto;
+  background-color: #fff;
+  border-radius: 4.5px;
+  box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+}
+.tableButton {
+  display: block;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 10px;
+  color: #00000d;
+  background-color: #ffa500;
+  font-size: 12px;
+  border: 1px solid #ffb11f;
+  padding: 8px 12px;
+  letter-spacing: 0.75px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.tableButton:hover {
+  color: #000000;
+  background-color: #fdb32b;
+}
+th {
+  text-align: left;
+}
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin: 0 auto;
+  padding-right: 25px;
+}
+
+/* Modal */
+
+.modalContainer {
+  text-align: center;
+  max-width: 700px;
+  min-height: 350px;
+  width: 100%;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
+}
+
+.modalBtn {
+  position: absolute;
+  top: 85%;
+  left: 44%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.closeBtn {
+  position: fixed;
+  top: 8px;
+  right: 25px;
+  font-size: 1.2em;
+}
+.closeBtn:hover {
+  color: #000000;
+  background-color: #fdb32b;
+}
+.flex-container {
+  display: flex;
+}
+
+.flex-child {
+  flex: 1;
+  text-align: left;
+  margin-left: 20px;
+  margin-right: 20px;
+  line-height: 1.5;
+  font-size: 1.1em;
+}
+
+.flex-child:first-child {
+  margin-right: 20px;
+}
+
+/* Media Sizing */
+@media only screen and (min-width: 768px) and (max-width: 1024) {
+  .container {
+    width: 600px;
+  }
+}

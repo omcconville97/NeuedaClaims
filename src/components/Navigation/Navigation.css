@@ -1,0 +1,65 @@
+.navigationBar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #222;
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
+  color: white;
+  text-transform: uppercase;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logoStyle {
+  display: flex;
+}
+
+.navigationBar .logoStyle .claims {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.first {
+  padding-left: 5px;
+  color: #ffa500;
+}
+
+.navigationBar .navigationLinks {
+  display: flex;
+  list-style-type: none;
+}
+
+.navigationBar .navigationLinks li {
+  list-style-type: none;
+  color: white;
+  text-decoration: none;
+}
+
+.navigationBar .navigationLinks .parent .link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  padding: 0 25px;
+}
+
+.navigationBar .navigationLinks .parent .link:hover {
+  color: #ffa500;
+}
+
+.footer {
+  margin-top: 131px;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  background-color: #222;
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
+  color: white;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}

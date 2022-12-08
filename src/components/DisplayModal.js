@@ -19,7 +19,7 @@ const DisplayModal = ({ handleClose, details }) => {
                   </div>
               </div>
                 <div className="modalBtn">
-                    <button onClick={handleClose}>Edit</button>
+                    <button onClick={handleClose}>Close</button>
                 </div>
         </div>
     );

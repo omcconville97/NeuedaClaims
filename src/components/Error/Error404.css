@@ -1,0 +1,54 @@
+.notfoundbox {
+  position: relative;
+  max-width: 740px;
+  margin-top: 17%;
+  margin-left: 50%;
+  padding: 90px 30px;
+  text-align: center;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 15px 15px -10px rgba(0, 0, 0, 0.1);
+}
+
+.notfound-404 {
+  position: relative;
+  height: 140px;
+}
+
+.notfoundbox .notfound-404 h1 {
+  font-family: "Roboto", sans-serif;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 165px;
+  font-weight: 700;
+  margin: 0px;
+  color: #262626;
+  text-transform: uppercase;
+}
+
+.error0 {
+  color: #ffa500;
+}
+
+.notfoundbox h2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #151515;
+  margin-top: 25px;
+}
+
+@media only screen and (max-width: 767px) {
+  .notfoundbox h2 {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .notfoundbox .notfound-404 h1 {
+    font-size: 141px;
+  }
+}

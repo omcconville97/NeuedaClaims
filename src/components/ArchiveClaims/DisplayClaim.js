@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { getAllClaims } from "../../data/DataFunctions";
+import { useSearchParams } from "react-router-dom";
+import { getAllClaims, getClaims } from "../../data/DataFunctions";
 import './Archive.css';
 import DisplayModal from "../DisplayModal";
+import Search from "../Search";
 
-const DisplayClaim = () => {
+const DisplayClaim = (props) => {
 
     const claims = getAllClaims();
     const allClaimTypes = claims.map(claim => claim.insuranceType);
@@ -17,7 +19,20 @@ const DisplayClaim = () => {
 
     }
 
-    const insuranceTypeSelector = <select onChange={changeInsuranceType} defaultValue="">
+    // useEffect( () => {
+    //     if(props.searchTerm !== ""){
+    //         getAllClaims(props.searchTerm)
+    //         .then( response => {
+    //             setPayments(response.data);
+                
+    //         } )
+    //         .catch ( error => {
+    //             console.log("something went wrong", error);
+    //         })
+    //     }
+    // }, [props.searchTerm])
+
+    const insuranceTypeSelector = <select onChange={changeInsuranceType} defaultValue={selectedInsuranceType}>
     <option value="" disabled={true}>---select---</option>
     {uniqueClaimTypes.map (claim => <option key={claim} value={claim}>{claim}</option>)}
     </select>
@@ -35,7 +50,7 @@ const DisplayClaim = () => {
     };
 
     const displayClaims = claims
-    .filter (claim => claim.insuranceType === selectedInsuranceType)
+    .filter (claim => props.searchTerm !== "" || claim.insuranceType === selectedInsuranceType)
     .map((seachClaim, index) => (
         <tr key={index}>
           <td>{seachClaim.policyNumber}</td>
@@ -49,6 +64,9 @@ const DisplayClaim = () => {
 
     return (
     <div>
+        {/* <div className="container">
+            <Search />
+        </div> */}
         <div className="container">
             <form>
                 <h2 className="formTitle">Diplay Claims</h2>

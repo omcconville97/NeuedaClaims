@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { getAllClaims } from "../../data/DataFunctions";
 import DisplayModal from "../DisplayModal";
-import OpenClaimsTableRow from "./OpenClaimsTableRow";
+
 
 const OpenClaims = () => {
 
@@ -30,6 +30,7 @@ const OpenClaims = () => {
       <td><button onClick={() => hanldeClick(openClaim)}className="tableButton" type="button" name="registerButton">OPEN</button></td>
     </tr>
   ));
+  
 
   return (
     <div className="tableContainer">

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { getAllClaims } from "../../data/DataFunctions";
 import DisplayModal from "../DisplayModal";
+import Search from "../Search";
 
 const SearchClaim = () => {
 
@@ -31,19 +32,7 @@ const SearchClaim = () => {
 return (
 <div>
     <div className="container">
-            <form>
-                    <h2 className="formTitle">Search for a claim</h2>
-
-                    <p>Enter a policy number or part of the customer's surname</p>
-
-                    <label htmlfor="policyNumber">Policy Number</label>
-                    <input type="text" name="policyNumber" id="policyNumber" placeholder="Policy No." />
-
-                    <label htmlfor="surname">Surname</label>
-                    <input type="text" name="surname" id="surname" placeholder="Surname" />
-
-                    <button type="button" name="registerButton">Search</button>
-            </form>
+            <Search />
         </div>
 
         <div className="tableContainer">

@@ -45,8 +45,10 @@ const Search = (props) => {
                     {/* <label htmlfor="surname">Surname</label>
                     <input type="text" name="surname" id="surname" placeholder="Surname" /> */}
 
+                    <div className="sideby">
                     <button type="submit" name="registerButton" disabled={!valid || !touched}>Search</button>
-                    <button onClick={clearForm} >Reset</button>
+                    <button className="btnSearch" onClick={clearForm} >Reset</button>
+                    </div>
             </form>
         </div>
     )

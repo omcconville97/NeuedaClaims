@@ -10,6 +10,7 @@ import Error404 from './components/Error/Error404';
 import HomePage from './components/Home/HomePage';
 import { useState } from 'react';
 import TestComponent from './components/TestComponent';
+import AddTask from './components/Tasks/AddTask';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/searchclaim" element={<SearchClaim setSearchTerm={setSearchTerm} />} />
             <Route path="/openclaims" element={<OpenClaims />} />
             <Route path="/displayclaims" element={<DisplayClaim searchTerm={searchTerm}/>} />
+            <Route path="/tasks" element={<AddTask />} />
             <Route path="/*" element={<Error404 />} />
           </Routes>
         <Footer />

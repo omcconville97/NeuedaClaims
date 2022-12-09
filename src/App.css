@@ -192,6 +192,14 @@ td {
   margin-right: 20px;
 }
 
+.sideby {
+  display: flex;
+  margin: auto;
+}
+.btnSearch{
+  margin-left: 10px;
+}
+
 /* Media Sizing */
 @media only screen and (min-width: 768px) and (max-width: 1024) {
   .container {

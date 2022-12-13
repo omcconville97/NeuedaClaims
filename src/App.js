@@ -25,7 +25,7 @@ function App() {
 
             <Route path="/test" element={<TestComponent />} />
 
-            <Route path="/searchclaim" element={<SearchClaim setSearchTerm={setSearchTerm} />} />
+            <Route path="/searchclaim" element={<SearchClaim setSearchTerm={setSearchTerm} searchTerm={searchTerm}/>} />
             <Route path="/openclaims" element={<OpenClaims />} />
             <Route path="/displayclaims" element={<DisplayClaim searchTerm={searchTerm}/>} />
             <Route path="/tasks" element={<AddTask />} />

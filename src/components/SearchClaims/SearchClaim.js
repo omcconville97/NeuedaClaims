@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { getAllClaims } from "../../data/DataFunctions";
 import DisplayModal from "../DisplayModal";
 import Search from "../Search";
 
-const SearchClaim = () => {
+const SearchClaim = (props) => {
 
   const claims = getAllClaims();
 
+  /* Start of Modal*/
   const [show, setShow] = useState(false);
   const [selectedData, setSelectedData] = useState({});
 
@@ -18,6 +20,21 @@ const SearchClaim = () => {
   const hideModal = () => {
     setShow(false);
   };
+  /* End of Modal*/
+
+  /* Start of Search Params*/
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect( () => {
+    loadClaims();
+  } , []);
+
+  const loadClaims = () => (
+    getAllClaims()
+  );
+
+
+  /* End of Search Params*/
 
   const searchClaims =  claims.map((seachClaim, index) => (
     <tr key={index}>

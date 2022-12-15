@@ -20,6 +20,7 @@ const Search = (props) => {
 
     const doSearch = (event) => {
         event.preventDefault();
+        console.log("Search Term", localSearchTerm)
         props.setSearchTerm(localSearchTerm);
         navigate(`/searchclaim/${localSearchTerm}`);
     }
@@ -38,11 +39,11 @@ const Search = (props) => {
 
                     <p>Enter a policy number and click search:</p>
 
-                    <label htmlfor="policyNumber">Policy Number</label>
+                    <label htmlFor="policyNumber">Policy Number</label>
                     <input onChange={handleChange} value={localSearchTerm} type="text" name="policyNumber" id="policyNumber" placeholder="Policy No." 
                     style ={{border: valid ? "1px solid #000" : "2px solid #f00"}}/>
 
-                    {/* <label htmlfor="surname">Surname</label>
+                    {/* <label htmlFor="surname">Surname</label>
                     <input type="text" name="surname" id="surname" placeholder="Surname" /> */}
 
                     <div className="sideby">

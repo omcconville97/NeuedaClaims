@@ -6,7 +6,7 @@ const NewClaim = () => {
     const [message, setMessage] = useState("");
 
     const initialNewClaimState = {policyNumber : "", title: "",
-     firstName: "", surname: "", email: "",phoneNo:"", 
+     firstName: "", surname: "", email: "",phoneNo:"", claimType: "",
      insuranceType:"", status: "Awaiting Assessment"}
 
      const formReducer = (state, data) => {
@@ -51,7 +51,7 @@ const NewClaim = () => {
 
                     <label htmlFor="claimType">Claim Type:</label>
                     <select name="claimType" id="claimType" value={newClaim.claimType} onChange={handleChange}>
-                        <option value="" disabled selected>-- select --</option>
+                        <option value="" disabled >-- select --</option>
                         <option value="car">Car</option>
                         <option value="life">Life</option>
                         <option value="home">Home</option>
@@ -60,7 +60,7 @@ const NewClaim = () => {
 
                     <label htmlFor="title">Title</label>
                     <select name="title" id="title" value={newClaim.title} onChange={handleChange}>
-                        <option value="" disabled selected>-- select --</option>
+                        <option value="" disabled >-- select --</option>
                         <option value="mr">Mr</option>
                         <option value="mrs">Mrs</option>
                         <option value="ms">Ms</option>

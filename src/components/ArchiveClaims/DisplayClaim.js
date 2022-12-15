@@ -73,7 +73,7 @@ const DisplayClaim = (props) => {
     
                 <p>Please select the type of claim you would like to display</p>
                 <div className="claimsTypeSelector">
-                <label htmlfor="claimType">Claim Type:</label>
+                <label htmlFor="claimType">Claim Type:</label>
                     {insuranceTypeSelector}
                 </div>
             </form>   

@@ -64,7 +64,9 @@ return (
                   
                 </tr>
                 </thead>
+                <tbody>
                     {searchClaims}
+                  </tbody>
               </table>
               {show && <DisplayModal details={selectedData} handleClose={hideModal} />}
         </div>

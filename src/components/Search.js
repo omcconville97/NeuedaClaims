@@ -22,7 +22,7 @@ const Search = (props) => {
         event.preventDefault();
         console.log("Search Term", localSearchTerm)
         props.setSearchTerm(localSearchTerm);
-        navigate(`/searchclaim/${localSearchTerm}`);
+        navigate(`/find/${localSearchTerm}`);
     }
 
     const clearForm = () => {
@@ -33,7 +33,7 @@ const Search = (props) => {
     }
 
     return (
-        <div className="searchFormat">
+        <div className="container">
             <form onSubmit={doSearch}>
                     <h2 className="formTitle">Search for a claim</h2>
 
@@ -42,9 +42,6 @@ const Search = (props) => {
                     <label htmlFor="policyNumber">Policy Number</label>
                     <input onChange={handleChange} value={localSearchTerm} type="text" name="policyNumber" id="policyNumber" placeholder="Policy No." 
                     style ={{border: valid ? "1px solid #000" : "2px solid #f00"}}/>
-
-                    {/* <label htmlFor="surname">Surname</label>
-                    <input type="text" name="surname" id="surname" placeholder="Surname" /> */}
 
                     <div className="sideby">
                     <button type="submit" name="registerButton" disabled={!valid || !touched}>Search</button>

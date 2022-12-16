@@ -49,7 +49,7 @@ const SearchClaim = (props) => {
 return (
 <div>
     <div className="container">
-            <Search />
+            <Search setSearchTerm={props.setSearchTerm}/>
         </div>
 
         <div className="tableContainer">

@@ -1,8 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation';
-import NewClaim from './components/NewClaim';
-import SearchClaim from './components/SearchClaims/SearchClaim';
+
 import Footer from './components/Navigation/Footer';
 import OpenClaims from './components/OpenClaims/OpenClaims';
 import DisplayClaim from './components/ArchiveClaims/DisplayClaim';
@@ -11,6 +10,8 @@ import HomePage from './components/Home/HomePage';
 import { useState } from 'react';
 import TestComponent from './components/TestComponent';
 import AddTask from './components/Tasks/AddTask';
+import FindDisplaysPage from './components/ArchiveClaims/FindDisplaysPage';
+import NewClaim from './components/NewClaims/NewClaim';
 
 function App() {
 
@@ -22,12 +23,14 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/newclaim" element={<NewClaim />} />
-
             <Route path="/test" element={<TestComponent />} />
-
-            <Route path="/searchclaim" element={<SearchClaim setSearchTerm={setSearchTerm} searchTerm={searchTerm}/>} />
             <Route path="/openclaims" element={<OpenClaims />} />
-            <Route path="/displayclaims" element={<DisplayClaim searchTerm={searchTerm}/>} />
+            <Route path="/find" element = {
+            <FindDisplaysPage searchTerm={searchTerm} setSearchTerm={setSearchTerm} /> }
+            />
+            <Route path="/find/:policyNumber" element = {
+            <FindDisplaysPage searchTerm={searchTerm} setSearchTerm={setSearchTerm} /> }
+            />
             <Route path="/tasks" element={<AddTask />} />
             <Route path="/*" element={<Error404 />} />
           </Routes>

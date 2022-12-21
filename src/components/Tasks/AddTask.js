@@ -57,9 +57,10 @@ const AddTask = () => {
             </div>
         </div>
       <div>
-        {todoList.map((task) => {
+        {todoList.map((task,index) => {
           return (
             <DisplayTask 
+              key={index}
               taskName={task.taskName} 
               id={task.id} 
               completed={task.completed}

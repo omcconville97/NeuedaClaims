@@ -1,3 +1,4 @@
+import './NewClaim.css'
 import { useReducer, useState } from "react";
 import { addNewClaim } from "../../data/DataFunctions";
 
@@ -48,55 +49,75 @@ const NewClaim = () => {
 
     const carOption = showOptionCar && 
         <div>
-            <p className="label">Please select desired Car Insurance Cover:</p>
-            <label htmlFor="fullyComp">Fully Comprehensive</label><br/>
-            <input type="radio" id="fullyComp" name="input" value="fullyComp" onChange={handleChange}/>
+            <p>Please select desired Car Insurance Cover:</p>
+        <label className="Radio" htmlFor="fullyComp">
+            <input className="Radio-Input" type="radio" id="fullyComp" name="input" value="fullyComp" onChange={handleChange}/>
+            Fully Comprehensive
+        </label>
 
-            <label htmlFor="thirdParty">Third Party</label><br/>
-            <input type="radio" id="thirdParty" name="input" value="thirdParty" onChange={handleChange}/>
-
-            <label htmlFor="TPFT">Third Party Fire and Theft</label>
-            <input type="radio" id="TPFT" name="input" value="TPFT" onChange={handleChange}/>
-        </div>;
+        <label className="Radio" htmlFor="thirdParty">
+            <input className="Radio-Input" type="radio" id="thirdParty" name="input" value="thirdParty" onChange={handleChange} />
+            Third<br/>Party
+        </label>
+        <label className="Radio" htmlFor="TPFT">
+            <input className="Radio-Input" type="radio" id="TPFT" name="input" value="TPFT" onChange={handleChange} />
+            Third Party Fire + Theft
+        </label>
+        </div>
 
     const lifeOption = showOptionLife && 
         <div>
             <p>Please select desired Life Insurance Cover:</p>
-            <label htmlFor="criticalIllness">Critical Illness</label><br/>
-            <input type="radio" id="criticalIllness" name="input" value="criticalIllness" onChange={handleChange}/>
+        <label className="Radio" htmlFor="criticalIllness">
+            <input className="Radio-Input" type="radio" id="criticalIllness" name="input" value="criticalIllness" onChange={handleChange}/>
+            Critical Illness
+        </label>
 
-            <label htmlFor="over50s">Over 50's</label><br/>
-            <input type="radio" id="over50s" name="input" value="over50s" onChange={handleChange}/>
-
-            <label htmlFor="group">Group Insurance</label>
-            <input type="radio" id="group" name="input" value="group" onChange={handleChange}/>
-        </div>;
+        <label className="Radio" htmlFor="over50s">
+            <input className="Radio-Input" type="radio" id="over50s" name="input" value="over50s" onChange={handleChange} />
+            Over<br/>50's
+        </label>
+        <label className="Radio" htmlFor="group">
+            <input className="Radio-Input" type="radio" id="group" name="input" value="group" onChange={handleChange} />
+            Group Insurance
+        </label>
+        </div>
 
     const homeOption = showOptionHome && 
         <div>
             <p>Please select desired Home Insurance Cover:</p>
-            <label htmlFor="buildings">Buildings</label><br/>
-            <input type="radio" id="buildings" name="input" value="buildings" onChange={handleChange}/>
+        <label className="Radio" htmlFor="buildings">
+            <input className="Radio-Input" type="radio" id="buildings" name="input" value="buildings" onChange={handleChange}/>
+            Buildings Cover
+        </label>
 
-            <label htmlFor="content">Content</label><br/>
-            <input type="radio" id="content" name="input" value="content" onChange={handleChange}/>
-
-            <label htmlFor="buildingsAndContent">Buildings and Content</label>
-            <input type="radio" id="buildingsAndContent" name="input" value="buildingsAndContent" onChange={handleChange}/>
-        </div>;
+        <label className="Radio" htmlFor="content">
+            <input className="Radio-Input" type="radio" id="content" name="input" value="content" onChange={handleChange} />
+            Content Cover
+        </label>
+        <label className="Radio" htmlFor="buildingsAndContent">
+            <input className="Radio-Input" type="radio" id="buildingsAndContent" name="input" value="buildingsAndContent" onChange={handleChange} />
+            Buildings + Content
+        </label>
+        </div>
 
     const petOption = showOptionPet && 
         <div>
             <p>Please select desired Pet Insurance Cover:</p>
-            <label htmlFor="lifeTime">Life Time</label><br/>
-            <input type="radio" id="lifeTime" name="input" value="lifeTime" onChange={handleChange}/>
+        <label className="Radio" htmlFor="lifeTime">
+            <input className="Radio-Input" type="radio" id="lifeTime" name="input" value="lifeTime" onChange={handleChange}/>
+            Life Time
+        </label>
 
-            <label htmlFor="annual">Annual</label><br/>
-            <input type="radio" id="annual" name="input" value="annual" onChange={handleChange}/>
-
-            <label htmlFor="acident">Accidental</label>
-            <input type="radio" id="acident" name="input" value="acident" onChange={handleChange}/>
-        </div>;
+        <label className="Radio" htmlFor="annual">
+            <input className="Radio-Input" type="radio" id="annual" name="input" value="annual" onChange={handleChange} />
+            Annual
+        </label>
+        <label className="Radio" htmlFor="acident">
+            <input className="Radio-Input" type="radio" id="acident" name="input" value="acident" onChange={handleChange} />
+            Accidental
+        </label>
+        </div>
     
 
     return ( 
@@ -173,7 +194,7 @@ const NewClaim = () => {
                     {lifeOption}
                     {homeOption}
                     {petOption}
-
+                    
                     <button type="submit" name="registerButton">Register</button>
                     <div>{message}</div> 
             </form>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getAllClaims } from "../../data/DataFunctions";
-import './Archive.css';
+import './Display.css';
 import DisplayModal from "../DisplayModal";
 
 
@@ -21,14 +21,13 @@ const DisplayClaim = (props) => {
                 )
             })
             setClaims(claim)
-            console.log("Claim in setClaim:", claim)
         }
         else getAllClaims();
     }, [props.searchTerm])
 
     
 
-    const [claims, setClaims] = useState([]);
+    const [claims, setClaims] = useState(allClaims);
     
     const [searchParams, setSearchParams] = useSearchParams();
 

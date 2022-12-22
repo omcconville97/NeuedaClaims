@@ -6,7 +6,7 @@ import DisplayModal from "../DisplayModal";
 
 const OpenClaims = () => {
 
-  const claims = getAllClaims();
+  const allClaims = getAllClaims();
 
   const [show, setShow] = useState(false);
   const [selectedData, setSelectedData] = useState({});
@@ -22,7 +22,7 @@ const OpenClaims = () => {
 
   
 
-  const openClaims = claims.filter (claim => claim.status !== "Approved")
+  const openClaims = allClaims.filter (claim => claim.status !== "Approved")
   .map((openClaim, index) => (
     <tr key={index}>
       <td>{openClaim.policyNumber}</td>

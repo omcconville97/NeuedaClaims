@@ -7,8 +7,11 @@ const NewClaim = () => {
     const [message, setMessage] = useState("");
 
     const initialNewClaimState = {policyNumber : "", title: "",
-     firstName: "", surname: "", email: "",phoneNo:"", claimType: "",
-     insuranceType:"", status: "Awaiting Assessment"}
+     firstName: "", surname: "", email: "",phoneNo:"", claimType: "", date: "", estimatedWorth:"", reason: "", description: "",
+     insuranceType:"", vehicleMake:"", vehicleModel: "", vehicleYear: "", 
+     propertyAddress: "",
+     animalType:"", animalBreed:"",
+     status: "Awaiting Assessment"}
 
      const formReducer = (state, data) => {
         return {...state, [data.field] : data.value}
@@ -43,80 +46,37 @@ const NewClaim = () => {
     const [additionalOption, SetAdditionalOption] = useState("");
     
     const [showOptionPet, setShowOptionPet] = useState(false);  
-    const [showOptionCar, setShowOptionCar] = useState(false);
-    const [showOptionLife, setShowOptionLife] = useState(false); 
+    const [showOptionvehicle, setShowOptionvehicle] = useState(false);
     const [showOptionHome, setShowOptionHome] = useState(false);   
 
-    const carOption = showOptionCar && 
+    const vehicleOption = showOptionvehicle && 
         <div>
-            <p>Please select desired Car Insurance Cover:</p>
-        <label className="Radio" htmlFor="fullyComp">
-            <input className="Radio-Input" type="radio" id="fullyComp" name="input" value="fullyComp" onChange={handleChange}/>
-            Fully Comprehensive
-        </label>
+        <p>Please complete further Vehicle Insurance Details:</p>
+            <label htmlFor="vehicleMake">Make of Vehicle</label>
+            <input type="text" name="vehicleMake" id="vehicleMake" placeholder="Make" value={newClaim.vehicleMake} onChange={handleChange}/>
 
-        <label className="Radio" htmlFor="thirdParty">
-            <input className="Radio-Input" type="radio" id="thirdParty" name="input" value="thirdParty" onChange={handleChange} />
-            Third<br/>Party
-        </label>
-        <label className="Radio" htmlFor="TPFT">
-            <input className="Radio-Input" type="radio" id="TPFT" name="input" value="TPFT" onChange={handleChange} />
-            Third Party Fire + Theft
-        </label>
-        </div>
+            <label htmlFor="vehicleModel">Make of Vehicle</label>
+            <input type="text" name="vehicleModel" id="vehicleModel" placeholder="Model" value={newClaim.vehicleModel} onChange={handleChange}/>
 
-    const lifeOption = showOptionLife && 
-        <div>
-            <p>Please select desired Life Insurance Cover:</p>
-        <label className="Radio" htmlFor="criticalIllness">
-            <input className="Radio-Input" type="radio" id="criticalIllness" name="input" value="criticalIllness" onChange={handleChange}/>
-            Critical Illness
-        </label>
-
-        <label className="Radio" htmlFor="over50s">
-            <input className="Radio-Input" type="radio" id="over50s" name="input" value="over50s" onChange={handleChange} />
-            Over<br/>50's
-        </label>
-        <label className="Radio" htmlFor="group">
-            <input className="Radio-Input" type="radio" id="group" name="input" value="group" onChange={handleChange} />
-            Group Insurance
-        </label>
+            <label htmlFor="vehicleYear">Vehicle Year</label>
+            <input type="text" name="vehicleYear" id="vehicleYear" placeholder="Year" value={newClaim.vehicleYear} onChange={handleChange}/>
         </div>
 
     const homeOption = showOptionHome && 
         <div>
-            <p>Please select desired Home Insurance Cover:</p>
-        <label className="Radio" htmlFor="buildings">
-            <input className="Radio-Input" type="radio" id="buildings" name="input" value="buildings" onChange={handleChange}/>
-            Buildings Cover
-        </label>
-
-        <label className="Radio" htmlFor="content">
-            <input className="Radio-Input" type="radio" id="content" name="input" value="content" onChange={handleChange} />
-            Content Cover
-        </label>
-        <label className="Radio" htmlFor="buildingsAndContent">
-            <input className="Radio-Input" type="radio" id="buildingsAndContent" name="input" value="buildingsAndContent" onChange={handleChange} />
-            Buildings + Content
-        </label>
+            <p>Please complete further Home Insurance details:</p>
+            <label htmlFor="propertyAddress">Address of property</label>
+            <input type="text" name="propertyAddress" id="propertyAddress" placeholder="Address" value={newClaim.propertyAddress} onChange={handleChange}/>
         </div>
 
     const petOption = showOptionPet && 
         <div>
-            <p>Please select desired Pet Insurance Cover:</p>
-        <label className="Radio" htmlFor="lifeTime">
-            <input className="Radio-Input" type="radio" id="lifeTime" name="input" value="lifeTime" onChange={handleChange}/>
-            Life Time
-        </label>
+            <p>Please complete further Pet Insurance details:</p>
+            <label htmlFor="animalType">Type of Animal</label>
+            <input type="text" name="animalType" id="animalType" placeholder="e.g dog or cat" value={newClaim.animalType} onChange={handleChange}/>
 
-        <label className="Radio" htmlFor="annual">
-            <input className="Radio-Input" type="radio" id="annual" name="input" value="annual" onChange={handleChange} />
-            Annual
-        </label>
-        <label className="Radio" htmlFor="acident">
-            <input className="Radio-Input" type="radio" id="acident" name="input" value="acident" onChange={handleChange} />
-            Accidental
-        </label>
+            <label htmlFor="animalBreed">Breed of Animal</label>
+            <input type="text" name="animalBreed" id="animalBreed" placeholder="breed" value={newClaim.animalBreed} onChange={handleChange}/>
         </div>
     
 
@@ -153,47 +113,51 @@ const NewClaim = () => {
                     <input type="text" name="phoneNo" id="phoneNo" placeholder="Phone No." 
                     value={newClaim.phoneNo} onChange={handleChange}/>
 
+                    <label htmlFor="startDate">Start Date</label>
+                    <input type="date" name="startDate" id="startDate" 
+                    value={newClaim.date} onChange={handleChange}/>
+
+                    <label htmlFor="estimatedWorth">Claim Worth</label>
+                    <input type="text" name="estimatedWorth" id="estimatedWorth" placeholder="£..." 
+                    value={newClaim.estimatedWorth} onChange={handleChange}/>
+
                     <label htmlFor="policyType">Policy Type:</label>
                     <select name="policyType" id="policyType" value={additionalOption} type="text"
                     onChange={(e) => {
                         SetAdditionalOption(e.target.value);
                         if (e.target.value === "1") {
-                            setShowOptionCar(true);
-                            setShowOptionLife(false);
+                            setShowOptionvehicle(true);
                             setShowOptionHome(false);
                             setShowOptionPet(false);
                             
                         }
-                        else if (e.target.value === "2") {
-                            setShowOptionCar(false);
-                            setShowOptionLife(true);
-                            setShowOptionHome(false);
-                            setShowOptionPet(false);
-                        }
-                        else if (e.target.value === "3"){
-                            setShowOptionCar(false);
-                            setShowOptionLife(false);
+                        else if (e.target.value === "2"){
+                            setShowOptionvehicle(false);
                             setShowOptionHome(true);
                             setShowOptionPet(false);
                         } else {
-                            setShowOptionCar(false);
-                            setShowOptionLife(false);
+                            setShowOptionvehicle(false);
                             setShowOptionHome(false);
                             setShowOptionPet(true);
                         }
                       }}
                     >
                         <option value="" disabled >-- select --</option>
-                        <option value="1">Car</option>
-                        <option value="2">Life</option>
-                        <option value="3">Home</option>
-                        <option value="4">Pet</option>
+                        <option value="1">Vehicle</option>
+                        <option value="2">Home</option>
+                        <option value="3">Pet</option>
                     </select>
 
-                    {carOption}
-                    {lifeOption}
+                    {vehicleOption}
                     {homeOption}
                     {petOption}
+
+                    <label htmlFor="reason">Reason</label>
+                    <input type="text" name="reason" id="reason"
+                    value={newClaim.reason} onChange={handleChange}/>
+
+                    <label htmlFor="description">Description</label>
+                    <textarea name="description" id="description" onChange={handleChange} cols="19" rows="4"></textarea>
                     
                     <button type="submit" name="registerButton">Register</button>
                     <div>{message}</div> 

@@ -4,3 +4,7 @@
   display: flex;
   font-size: 1.1em;
 }
+
+#description {
+  margin-top: 10px;
+}

@@ -34,13 +34,12 @@ const Search = (props) => {
 
     return (
         <div className="container">
+            <div className="searchFormat">
             <form onSubmit={doSearch}>
                     <h2 className="formTitle">Search for a claim</h2>
+                    <p>Search for a Policy No. or customer surname:</p>
 
-                    <p>Enter a policy number and click search:</p>
-
-                    <label htmlFor="policyNumber">Policy Number</label>
-                    <input onChange={handleChange} value={localSearchTerm} type="text" name="policyNumber" id="policyNumber" placeholder="Policy No." 
+                    <input onChange={handleChange} value={localSearchTerm} type="text" name="policyNumber" id="policyNumber" placeholder="search.." 
                     style ={{border: valid ? "1px solid #000" : "2px solid #f00"}}/>
 
                     <div className="sideby">
@@ -48,6 +47,7 @@ const Search = (props) => {
                     <button className="btnSearch" onClick={clearForm} >Reset</button>
                     </div>
             </form>
+            </div>
         </div>
     )
 

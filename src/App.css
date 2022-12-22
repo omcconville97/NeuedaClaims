@@ -17,20 +17,17 @@ body {
   box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
 }
 
-.searchFormat p {
-  font-size: 1.1em;
-  text-align: center;
-  font-style: italic;
-  padding-bottom: 15px;
+.searchFormat input{
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.25em;
 }
-
-.searchFormat label {
-  width: 300px;
-  display: block;
-  float: left;
-  margin-right: 10px;
-  font-size: 1.1em;
-  line-height: 2.1;
+.sideby {
+  justify-content: center;
+  display: flex;
+}
+.btnSearch{
+  margin-left: 10px;
 }
 
 form p {
@@ -147,7 +144,7 @@ td {
 .modalContainer {
   text-align: center;
   max-width: 700px;
-  min-height: 350px;
+  min-height: 425px;
   width: 100%;
   position: fixed;
   top: 40%;
@@ -192,13 +189,6 @@ td {
   margin-right: 20px;
 }
 
-.sideby {
-  display: flex;
-  margin: auto;
-}
-.btnSearch{
-  margin-left: 10px;
-}
 
 /* Media Sizing */
 @media only screen and (min-width: 768px) and (max-width: 1024) {

@@ -50,8 +50,8 @@ const TestComponent = (props) => {
       <p>Enter details below:{" "}</p>
       <input type="text" value={search} onChange={handleSearchChange} />
       </div>
-      
       </div>
+      
       <div className="tableContainer">
       <h2 className="formTitle">Results</h2>
       <table>

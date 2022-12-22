@@ -63,7 +63,9 @@ const TestComponent = (props) => {
             <th>Insurance Type</th>   
             </tr>
       </thead>
+      <tbody>
       {searchClaim}
+      </tbody>
       </table>
             {show && <DisplayModal details={selectedData} handleClose={hideModal} />}
             

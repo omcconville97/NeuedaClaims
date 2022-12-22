@@ -7,28 +7,38 @@ import DisplayModal from "../DisplayModal";
 
 const DisplayClaim = (props) => {
 
-    const claims = getAllClaims();
+    const allClaims = getAllClaims();
     
-    const allInsuranceTypes = claims.map(claim => claim.insuranceType);
+    const allInsuranceTypes = allClaims.map(claim => claim.insuranceType);
     const uniqueInsuranceType = allInsuranceTypes.filter((insuranceType, index) => allInsuranceTypes.indexOf(insuranceType) === index);
     
-    // const allPolicyNumbers = claims.map(claim => claim.policyNumber);
-    // const uniquePolicyNumbers = allPolicyNumbers.filter((policyNumber, index) => allPolicyNumbers.indexOf(policyNumber) === index);
-
-    useEffect( () => {
-        const allPolicyNumbers = claims.map(claim => claim.policyNumber)
+    
+    useEffect(() => {
+        if(props.searchTerm !== ""){
+            const claim = allClaims.filter((claim) => {
+                return (
+                    claim.policyNumber.includes(props.searchTerm)
+                )
+            })
+            setClaims(claim)
+            console.log("Claim in setClaim:", claim)
+        }
+        else getAllClaims();
     }, [props.searchTerm])
 
+    
 
-
+    const [claims, setClaims] = useState([]);
+    
     const [searchParams, setSearchParams] = useSearchParams();
 
     const [selectedInsuranceType, setSelectedInsuranceType] = useState("")
-    
+
     const changeInsuranceType = (event) => {
         const insuranceType = event.target.value;
         setSelectedInsuranceType(insuranceType);
         setSearchParams({"insuranceType" : insuranceType})
+
     }
 
     const insuranceTypeSelector = <select onChange={changeInsuranceType} defaultValue={selectedInsuranceType}>
@@ -37,7 +47,7 @@ const DisplayClaim = (props) => {
     </select>
 
 
-    /* Start of Modal */
+    /* ==== Start of Modal ==== */
     const [show, setShow] = useState(false);
     const [selectedData, setSelectedData] = useState({});
 
@@ -49,7 +59,7 @@ const DisplayClaim = (props) => {
     const hideModal = () => {
     setShow(false);
     };
-    /* End of Modal */
+    /* ==== End of Modal ==== */
 
     return (
     <div>
@@ -78,13 +88,13 @@ const DisplayClaim = (props) => {
                     <tbody>
                     { claims
                         .filter (claim => props.searchTerm !== "" || claim.insuranceType === selectedInsuranceType)
-                        .map((seachClaim, index) => (
+                        .map((searchClaim, index) => (
                             <tr key={index}>
-                            <td>{seachClaim.policyNumber}</td>
-                            <td>{seachClaim.firstName}</td>
-                            <td>{seachClaim.surname}</td>
-                            <td>{seachClaim.insuranceType} Insurance</td>
-                            <td><button onClick={() => hanldeClick(seachClaim)}className="tableButton" type="button" name="registerButton">OPEN</button></td>
+                            <td>{searchClaim.policyNumber}</td>
+                            <td>{searchClaim.firstName}</td>
+                            <td>{searchClaim.surname}</td>
+                            <td>{searchClaim.insuranceType} Insurance</td>
+                            <td><button onClick={() => hanldeClick(searchClaim)}className="tableButton" type="button" name="registerButton">OPEN</button></td>
                             </tr>
                         ))}
                     </tbody>

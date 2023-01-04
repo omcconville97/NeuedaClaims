@@ -1,6 +1,5 @@
 import { FaEdit, FaStickyNote } from "react-icons/fa";
-const OpenClaimsRow = ({details, index, onEdit, hanldeClick}) => {
-
+const OpenClaimsRow = ({details, index, onEdit, hanldeClick, onEditNotes}) => {
     
     return (
         <tr>
@@ -15,7 +14,9 @@ const OpenClaimsRow = ({details, index, onEdit, hanldeClick}) => {
                 <button className="actionButton" onClick={() => {
                     onEdit(index)
                 }}><FaEdit /></button>
-                <button className="actionButton"><FaStickyNote /></button>
+                <button className="actionButton" onClick={() => {
+                    onEditNotes(index)
+                }}><FaStickyNote /></button>
                 </div>
             </td>
         </tr>

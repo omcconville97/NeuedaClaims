@@ -1,0 +1,24 @@
+.containerNotes {
+  max-width: 400px;
+  padding: 1em 2em 2em 2em;
+  margin: 2.5em auto;
+  background-color: #fff;
+  border-radius: 4.5px;
+  box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+}
+
+.taskNote{
+    margin-bottom: 10px;
+    margin-left: 13%;
+    font-size: 1.2em;
+}
+
+.taskDate{
+    margin-bottom: 10px;
+    margin-left: 13%;
+    font-size: 1.2em;
+}
+
+label {
+    font-weight: bold;
+}

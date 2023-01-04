@@ -15,6 +15,8 @@ const DataForm = ({onCreate, update=false, onUpdate, onCancel, data}) => {
     const [reason, setReason] = useState("")
     const [description, setDescription] = useState("")
     const [status, setStatus] = useState("")
+    const [taskDate, setTaskDate] = useState("")
+    const [taskNote, setTaskNote] = useState("")
 
     useEffect(()=> {
             if(update){
@@ -30,6 +32,8 @@ const DataForm = ({onCreate, update=false, onUpdate, onCancel, data}) => {
                 setReason(data.reason)
                 setDescription(data.description)
                 setStatus(data.status)
+                setTaskDate(data.taskDate)
+                setTaskNote(data.taskNote)
             } else {
                 setPolicyNumber("")
                 setTitle("")
@@ -43,6 +47,8 @@ const DataForm = ({onCreate, update=false, onUpdate, onCancel, data}) => {
                 setReason("")
                 setDescription("")
                 setStatus("")
+                setTaskDate("")
+                setTaskNote("")
             }
     }, [update, data])
 
@@ -51,11 +57,11 @@ const DataForm = ({onCreate, update=false, onUpdate, onCancel, data}) => {
         if (update){
             onUpdate({policyNumber, title, firstName, surname, email, 
                 phoneNo, insuranceType, date, estimatedWorth, reason, 
-                description, status})
+                description, status,taskDate, taskNote})
         } else {
             onCreate({policyNumber, title, firstName, surname, email, 
                 phoneNo, insuranceType, date, estimatedWorth, reason, 
-                description, status})
+                description, status, taskDate, taskNote})
         }
     }
 

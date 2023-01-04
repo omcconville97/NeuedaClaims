@@ -85,11 +85,11 @@ const NewClaim = () => {
             <form onSubmit={handleSubmit}>
                     <h2 className="formTitle">Create New Claim</h2>
 
-                    <label htmlFor="policyNumber">Policy Number</label>
+                    <label htmlFor="policyNumber">Policy Number:</label>
                     <input type="text" name="policyNumber" id="policyNumber" placeholder="Policy No." 
                     value={newClaim.orderId} onChange={handleChange} />
 
-                    <label htmlFor="title">Title</label>
+                    <label htmlFor="title">Title:</label>
                     <select name="title" id="title" value={newClaim.title} onChange={handleChange}>
                         <option value="" disabled >-- select --</option>
                         <option value="mr">Mr</option>
@@ -97,27 +97,27 @@ const NewClaim = () => {
                         <option value="ms">Ms</option>
                     </select>
 
-                    <label htmlFor="firstName">First Name</label>
+                    <label htmlFor="firstName">First Name:</label>
                     <input type="text" name="firstName" id="firstName" placeholder="First Name" 
                     value={newClaim.firstName} onChange={handleChange}/>
 
-                    <label htmlFor="surname">Surname</label>
+                    <label htmlFor="surname">Surname:</label>
                     <input type="text" name="surname" id="surname" placeholder="Surname" 
                     value={newClaim.surname} onChange={handleChange}/>
 
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">Email:</label>
                     <input type="text" name="email" id="email" placeholder="Email Address" 
                     value={newClaim.email} onChange={handleChange}/>
                     
-                    <label htmlFor="phoneNo">Phone Number</label>
+                    <label htmlFor="phoneNo">Phone Number:</label>
                     <input type="text" name="phoneNo" id="phoneNo" placeholder="Phone No." 
                     value={newClaim.phoneNo} onChange={handleChange}/>
 
-                    <label htmlFor="startDate">Start Date</label>
+                    <label htmlFor="startDate">Start Date:</label>
                     <input type="date" name="startDate" id="startDate" 
                     value={newClaim.date} onChange={handleChange}/>
 
-                    <label htmlFor="estimatedWorth">Claim Worth</label>
+                    <label htmlFor="estimatedWorth">Claim Worth:</label>
                     <input type="text" name="estimatedWorth" id="estimatedWorth" placeholder="£..." 
                     value={newClaim.estimatedWorth} onChange={handleChange}/>
 
@@ -152,11 +152,11 @@ const NewClaim = () => {
                     {homeOption}
                     {petOption}
 
-                    <label htmlFor="reason">Reason</label>
+                    <label htmlFor="reason">Reason:</label>
                     <input type="text" name="reason" id="reason"
                     value={newClaim.reason} onChange={handleChange}/>
 
-                    <label htmlFor="description">Description</label>
+                    <label htmlFor="description">Description:</label>
                     <textarea name="description" id="description" onChange={handleChange} cols="19" rows="4"></textarea>
                     
                     <button type="submit" name="registerButton">Register</button>

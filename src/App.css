@@ -189,6 +189,23 @@ td {
   margin-right: 20px;
 }
 
+.actionButton {
+  display: block;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  color: #00000d;
+  background-color: #ffa500;
+  font-size: 12px;
+  border: 1px solid #ffb11f;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.actionButton:hover {
+  color: #000000;
+  background-color: #fdb32b;
+}
+
+
 
 /* Media Sizing */
 @media only screen and (min-width: 768px) and (max-width: 1024) {

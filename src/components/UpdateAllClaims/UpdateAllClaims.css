@@ -1,0 +1,25 @@
+.containerEdit {
+    max-width: 1150px;
+    padding: 1em 3em 2em 3em;
+    margin: 2.5em auto;
+    background-color: #fff;
+    border-radius: 4.5px;
+    box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+}
+
+.btnCancel{
+    margin-left: 15px;
+}
+
+.side-by-side { 
+    display: flex; 
+}
+
+label {
+    display: inline-block;
+    text-align: left;
+    padding-left: 50px;
+    
+  }
+
+  

@@ -1,28 +1,38 @@
-
 import { useState } from "react";
 import { getAllClaims } from "../../data/DataFunctions";
 import DataForm from "../DataForm";
 import DisplayModal from "../DisplayModal";
-import OpenClaimsRow from "./OpenClaimsRow";
+import DataRow from "./DataRow"
 
 
-const OpenClaims = () => {
 
-  // const allClaims = getAllClaims();
+const DataTable = () => {
 
-  // const openClaims = allData.filter (claim => claim.status !== "Approved")
+    const allData = getAllClaims();
 
-  const allData = getAllClaims();
-
-  const openClaims = allData.filter (claim => claim.status !== "Accepted - Paid")
-
-    const [tableData, setTableData] = useState(openClaims)
+    const [tableData, setTableData] = useState(allData)
     const [editing, setEditing] = useState(false)
     const [editIndex, setEditIndex] = useState(false)
-
     
 
+    const onSave = ({policyNumber, title, firstName, surname, email, 
+        phoneNo, insuranceType, date, estimatedWorth, reason, 
+        description, status}) => {
+        const newData = tableData.slice(0, tableData.length)
+        newData.push({
+            policyNumber, title, firstName, surname, email, 
+      phoneNo, insuranceType, date, estimatedWorth, reason, 
+      description, status
+        })
+        setTableData(newData)
+    }
 
+    const onDelete = (index) => {
+        const newData = tableData.slice(0, tableData.length)
+        newData.splice(index, 1)
+        newData.splice()
+        setTableData(newData)
+    }
 
     const onEdit = (index) => {
         setEditing(true)
@@ -42,16 +52,13 @@ const OpenClaims = () => {
         newData[editIndex] = {policyNumber, title, firstName, surname, email, 
             phoneNo, insuranceType, date, estimatedWorth, reason, 
             description, status}
-
-        const filteredData = newData.filter (claim => claim.status !== "Accepted - Paid")
-        setTableData(filteredData)
+        setTableData(newData)
         setEditing(false)
         setEditIndex(false)
         setShowEdit(current => !current);
     }
 
     const [showEdit, setShowEdit] = useState(false);
-
 
 
     /* ==== Start of Modal ==== */
@@ -73,37 +80,35 @@ const OpenClaims = () => {
         <>
         {showEdit &&
         <DataForm 
+        onCreate={onSave} 
         onCancel={onCancel}
         onUpdate={onUpdate}
         update={editing}
         data={editing ? tableData[editIndex]:{}}/>
         }
         <div className="tableContainer">
-        <h2 className="formTitle">Claims to be approved</h2>
-        <h3 className="formSubTitle">See below for all currently opened claims:</h3>
+        <h2 className="formTitle">Results</h2>
         <table>
             <thead>
                 <tr>
                     <th>Policy</th>
                     <th>Title</th>
-                    <th>Forname</th>
-                    <th>Surname</th>
-                    <th>Status</th>
-                    <th>View More</th>
+                    <th>Name</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {tableData.map( (details, index) => (
-                    <OpenClaimsRow details={details} key={index} index={index} onEdit={onEdit} hanldeClick={hanldeClick}/>
+                    <DataRow details={details} key={index} index={index} onDelete={onDelete} onEdit={onEdit} hanldeClick={hanldeClick}/>
                 ))}
             </tbody>
         </table>
         {show && <DisplayModal details={selectedData} handleClose={hideModal} hanldeClick={hanldeClick}/>}
+        
+    
         </div>
         </>
     )
 }
 
-export default OpenClaims;
-
+export default DataTable;

@@ -4,7 +4,6 @@ import Navigation from './components/Navigation/Navigation';
 
 import Footer from './components/Navigation/Footer';
 import OpenClaims from './components/OpenClaims/OpenClaims';
-import DisplayClaim from './components/DisplayClaims/DisplayClaim';
 import Error404 from './components/Error/Error404';
 import HomePage from './components/Home/HomePage';
 import { useState } from 'react';
@@ -12,6 +11,7 @@ import TestComponent from './components/TestComponent';
 import AddTask from './components/Tasks/AddTask';
 import FindDisplaysPage from './components/DisplayClaims/FindDisplaysPage';
 import NewClaim from './components/NewClaims/NewClaim';
+
 
 function App() {
 

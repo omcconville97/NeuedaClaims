@@ -11,6 +11,7 @@ import TestComponent from './components/TestComponent';
 import AddTask from './components/Tasks/AddTask';
 import FindDisplaysPage from './components/DisplayClaims/FindDisplaysPage';
 import NewClaim from './components/NewClaims/NewClaim';
+import ArchivedClaims from './components/ArchivedClaims/ArchivedClaims';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             <Route path="/newclaim" element={<NewClaim />} />
             <Route path="/test" element={<TestComponent />} />
             <Route path="/openclaims" element={<OpenClaims />} />
+            <Route path="/archiveclaims" element={<ArchivedClaims />} />
             <Route path="/find" element = {
             <FindDisplaysPage searchTerm={searchTerm} setSearchTerm={setSearchTerm} /> }
             />

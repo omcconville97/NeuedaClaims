@@ -16,6 +16,7 @@ const Navigation = () => {
               <li className="parent"><Link to="/newclaim" className="link" >New Claim</Link></li>
               <li className="parent" id="clients"><Link to="/openclaims" className="link">Open Claims</Link></li>
               <li className="parent"><Link to="/find" className="link">Search</Link></li>
+              <li className="parent"><Link to="/archiveclaims" className="link">Archived</Link></li>
               <li className="parent"><Link to="/tasks" className="link">Tasks</Link></li>
             </ul>
 

@@ -4,45 +4,24 @@ import { getAllClaims } from "../../data/DataFunctions";
 import DataForm from "../DataForm";
 import DisplayModal from "../DisplayModal";
 import NotesForm from "../NotesForm/NotesForm";
+import ArchivedClaimsRow from "./ArchivedClaimsRow";
 
-import OpenClaimsRow from "./OpenClaimsRow";
 
-
-const OpenClaims = () => {
+const ArchivedClaims = () => {
 
   const allData = getAllClaims();
 
-  const openClaims = allData.filter (claim => claim.status !== "Accepted - Paid" && claim.status !== "Rejected")
+  const openClaims = allData.filter (claim => claim.status === "Accepted - Paid" || claim.status === "Rejected")
 
     const [tableData, setTableData] = useState(openClaims)
-    const [editing, setEditing] = useState(false)
+    
     const [editIndex, setEditIndex] = useState(false)
 
     const onEdit = (index) => {
-        setEditing(true)
+        
         setEditIndex(index)
         setShowEdit(current => !current);
         setShowEditNotes(false)
-    }
-
-    const onCancel = () => {
-        setEditing(false)
-        setShowEdit(current => !current);
-    }
-
-    const onUpdate = ({policyNumber, title, firstName, surname, email, 
-        phoneNo, insuranceType, date, estimatedWorth, reason, 
-        description, status, taskDate, taskNote}) =>{
-        const newData = tableData.slice(0, tableData.length)
-        newData[editIndex] = {policyNumber, title, firstName, surname, email, 
-            phoneNo, insuranceType, date, estimatedWorth, reason, 
-            description, status, taskDate, taskNote}
-
-        const filteredData = newData.filter (claim => claim.status !== "Accepted - Paid")
-        setTableData(filteredData)
-        setEditing(false)
-        setEditIndex(false)
-        setShowEdit(current => !current);
     }
 
     const [showEdit, setShowEdit] = useState(false);
@@ -60,7 +39,7 @@ const OpenClaims = () => {
           phoneNo, insuranceType, date, estimatedWorth, reason, 
           description, status, taskDate, taskNote}
 
-      const filteredData = newData.filter (claim => claim.status !== "Accepted - Paid")
+      const filteredData = newData.filter (claim => claim.status === "Accepted - Paid")
       setTableData(filteredData)
       setEditingNotes(false)
       setEditIndex(false)
@@ -110,16 +89,9 @@ const OpenClaims = () => {
         update={editingNotes}
         data={editingNotes ? tableData[editIndex]:{}}/>
         }
-        {showEdit &&
-        <DataForm 
-        onCancel={onCancel}
-        onUpdate={onUpdate}
-        update={editing}
-        data={editing ? tableData[editIndex]:{}}/>
-        }
         <div className="tableContainer">
-        <h2 className="formTitle">Claims to be approved</h2>
-        <h3 className="formSubTitle">See below for all currently opened claims:</h3>
+        <h2 className="formTitle">Archived Claims</h2>
+        <h3 className="formSubTitle">See below for all Accepted and Rejected Claims:</h3>
         <table>
             <thead>
                 <tr>
@@ -134,7 +106,7 @@ const OpenClaims = () => {
             </thead>
             <tbody>
                 {tableData.map( (details, index) => (
-                    <OpenClaimsRow details={details} key={index} index={index} onEdit={onEdit} hanldeClick={hanldeClick} onEditNotes={onEditNotes}/>
+                    <ArchivedClaimsRow details={details} key={index} index={index} onEdit={onEdit} hanldeClick={hanldeClick} onEditNotes={onEditNotes}/>
                 ))}
             </tbody>
         </table>
@@ -144,5 +116,5 @@ const OpenClaims = () => {
     )
 }
 
-export default OpenClaims;
+export default ArchivedClaims;
 

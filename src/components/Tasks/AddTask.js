@@ -5,21 +5,23 @@ import "./Tasks.css";
 const AddTask = () => {
 
     const [todoList, setTodoList] = useState([]);
-    const [newTask, setNewTask] = useState("");
+    const [policyNumber, setPolicyNumber] = useState("");
+    const [newNote, setNewNote] = useState("");
     
-    const handleChange = (event) => {
-    setNewTask(event.target.value);
-    };
-
-    const addTask = () => {
+    const addTask = (event) => {
     const task = {
         id: todoList.length === 0 ? 1 : todoList[todoList.length - 1].id + 1,
-        taskName: newTask,
+        taskPolicyNo: policyNumber,
+        taskNote: newNote,
         completed: false,
     }
 
     const newTodoList = [...todoList, task];
     setTodoList(newTodoList);
+    event.preventDefault();
+
+    setPolicyNumber("");
+    setNewNote("");
 
     };
 
@@ -50,10 +52,18 @@ const AddTask = () => {
         <div className="containerTask">
             <div className="taskFormat">
             <h2 className="formTitle">Add a task to the Todo List</h2>
+              <form onSubmit={addTask}>
 
-            <p>Please use the box below:</p>
-            <input onChange={handleChange}/>
-            <button onClick={addTask}>Add Task</button>
+              <label htmlFor="policyNo">Policy Number:</label>
+              <span>
+                <input id="policyNo" name="policyNo" type="text" onChange={event => setPolicyNumber(event.target.value)} value={policyNumber} />
+              </span>
+
+              <label htmlFor="newNote">Description:</label>
+              <textarea name="newNote" id="newNote" onChange={event => setNewNote(event.target.value)} value={newNote} ></textarea>
+
+              <button type="submit">Submit Task</button>
+              </form>
             </div>
         </div>
       <div>
@@ -61,7 +71,8 @@ const AddTask = () => {
           return (
             <DisplayTask 
               key={index}
-              taskName={task.taskName} 
+              taskPolicyNo={task.taskPolicyNo} 
+              taskNote={task.taskNote}
               id={task.id} 
               completed={task.completed}
               deleteTask={deleteTask}

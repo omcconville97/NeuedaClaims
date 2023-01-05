@@ -17,7 +17,7 @@ body {
   box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
 }
 
-.searchFormat input{
+.searchFormat input {
   margin-left: auto;
   margin-right: auto;
   font-size: 1.25em;
@@ -26,7 +26,7 @@ body {
   justify-content: center;
   display: flex;
 }
-.btnSearch{
+.btnSearch {
   margin-left: 10px;
 }
 
@@ -204,10 +204,6 @@ td {
   color: #000000;
   background-color: #fdb32b;
 }
-
-
-
-
 
 /* Media Sizing */
 @media only screen and (min-width: 768px) and (max-width: 1024) {

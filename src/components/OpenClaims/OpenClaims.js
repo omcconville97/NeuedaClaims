@@ -4,7 +4,6 @@ import { getAllClaims } from "../../data/DataFunctions";
 import DataForm from "../DataForm";
 import DisplayModal from "../DisplayModal";
 import NotesForm from "../NotesForm/NotesForm";
-
 import OpenClaimsRow from "./OpenClaimsRow";
 
 

@@ -37,11 +37,11 @@ const Search = (props) => {
             <div className="searchFormat">
             <form onSubmit={doSearch}>
                     <h2 className="formTitle">Search for a claim</h2>
-                    <p>Search for a Policy No. or customer surname:</p>
 
-                    <input onChange={handleChange} value={localSearchTerm} type="text" name="policyNumber" id="policyNumber" placeholder="search.." 
-                    style ={{border: valid ? "1px solid #000" : "2px solid #f00"}}/>
-
+                    <label htmlFor="policyNumber">Policy Number or Surname:</label>
+                    <input onChange={handleChange} value={localSearchTerm} type="text" name="policyNumber" id="policyNumber" placeholder="search.."
+                    className={!valid ? 'searchBoxError' : ''}/>
+                    
                     <div className="sideby">
                     <button type="submit" name="registerButton" disabled={!valid || !touched}>Search</button>
                     <button className="btnSearch" onClick={clearForm} >Reset</button>

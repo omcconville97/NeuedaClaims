@@ -15,7 +15,7 @@ const DisplayModal = ({ handleClose, details }) => {
                   </div>
                   <div className="flex-child">
                       <p>Email: {details?.email}</p>
-                      <p>Phone No: {details?.phoneNo}</p>
+                      <p>Phone No: {details?.phoneNumber}</p>
                       <p>Insurance Type: {details?.insuranceType}</p>
                       <p>Worth: £{details?.estimatedWorth}</p>
                       <p>Description: {details?.description}</p>

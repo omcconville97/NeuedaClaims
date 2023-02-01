@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import Navigation from './components/Navigation/Navigation';
 import Footer from './components/Navigation/Footer';
 import OpenClaims from './components/OpenClaims/OpenClaims';
@@ -10,7 +11,7 @@ import AddTask from './components/Tasks/AddTask';
 import FindDisplaysPage from './components/DisplayClaims/FindDisplaysPage';
 import NewClaim from './components/NewClaims/NewClaim';
 import ArchivedClaims from './components/ArchivedClaims/ArchivedClaims';
-
+import store from './store/store';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
   
   return (
       <Router>
+        <Provider store={store} >
         <Navigation />
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -34,6 +36,7 @@ function App() {
             <Route path="/*" element={<Error404 />} />
           </Routes>
         <Footer />
+        </Provider>
       </Router>
   );
 }

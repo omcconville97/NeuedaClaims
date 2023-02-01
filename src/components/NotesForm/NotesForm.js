@@ -9,7 +9,7 @@ const NotesForm = ({onCreate, update=false, onUpdate, onCancel, data}) => {
     const [firstName, setFirstName] = useState("")
     const [surname, setSurname] = useState("")
     const [email, setEmail] = useState("")
-    const [phoneNo, setPhoneNo] = useState("")
+    const [phoneNumber, setphoneNumber] = useState("")
     const [insuranceType, setInsuranceType] = useState("")
     const [date, setDate] = useState("")
     const [estimatedWorth, setEstimatedWorth] = useState("")
@@ -26,7 +26,7 @@ const NotesForm = ({onCreate, update=false, onUpdate, onCancel, data}) => {
                 setFirstName(data.firstName)
                 setSurname(data.surname)
                 setEmail(data.email)
-                setPhoneNo(data.phoneNo)
+                setphoneNumber(data.phoneNumber)
                 setInsuranceType(data.insuranceType)
                 setDate(data.date)
                 setEstimatedWorth(data.estimatedWorth)
@@ -41,7 +41,7 @@ const NotesForm = ({onCreate, update=false, onUpdate, onCancel, data}) => {
                 setFirstName("")
                 setSurname("")
                 setEmail("")
-                setPhoneNo("")
+                setphoneNumber("")
                 setInsuranceType("")
                 setDate("")
                 setEstimatedWorth("")
@@ -57,11 +57,11 @@ const NotesForm = ({onCreate, update=false, onUpdate, onCancel, data}) => {
         e.preventDefault()
         if (update){
             onUpdate({policyNumber, title, firstName, surname, email, 
-                phoneNo, insuranceType, date, estimatedWorth, reason, 
+                phoneNumber, insuranceType, date, estimatedWorth, reason, 
                 description, status, taskDate, taskNote})
         } else {
             onCreate({policyNumber, title, firstName, surname, email, 
-                phoneNo, insuranceType, date, estimatedWorth, reason, 
+                phoneNumber, insuranceType, date, estimatedWorth, reason, 
                 description, status, taskDate, taskNote})
         }
     }

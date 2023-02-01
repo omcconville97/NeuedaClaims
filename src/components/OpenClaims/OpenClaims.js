@@ -1,6 +1,6 @@
 
-import { useState } from "react";
-import { getAllClaims } from "../../data/DataFunctions";
+import { useEffect, useState } from "react";
+import { getAllClaimsAxios } from "../../data/DataFunctions";
 import DataForm from "../DataForm";
 import DisplayModal from "../DisplayModal";
 import NotesForm from "../NotesForm/NotesForm";
@@ -9,19 +9,35 @@ import OpenClaimsRow from "./OpenClaimsRow";
 
 const OpenClaims = () => {
 
-  const allData = getAllClaims();
+  const [tableData, setTableData] = useState([])
+  const [loading, setLoading] = useState(true);
 
-  const openClaims = allData.filter (claim => claim.status !== "Accepted - Paid" && claim.status !== "Rejected")
+  const loadDataAxios = () => {
+    getAllClaimsAxios()
+        .then(response => {
+            console.log("Response", response);
+            const filtered = response.data.filter(claim => claim.status !== "Accepted - Paid" && claim.status !== "Rejected")
+            console.log("Response Filtered", filtered);
+            setTableData(filtered);
+            setLoading(false);
+        })
+        .catch(error => {
+            console.log("something went wrong", error);
+        });
+    };
 
-    const [tableData, setTableData] = useState(openClaims)
+    useEffect(() => loadDataAxios(), []);
+    
     const [editing, setEditing] = useState(false)
     const [editIndex, setEditIndex] = useState(false)
+    
 
     const onEdit = (index) => {
         setEditing(true)
         setEditIndex(index)
         setShowEdit(current => !current);
         setShowEditNotes(false)
+        console.log("onEdit", index);
     }
 
     const onCancel = () => {
@@ -30,11 +46,11 @@ const OpenClaims = () => {
     }
 
     const onUpdate = ({policyNumber, title, firstName, surname, email, 
-        phoneNo, insuranceType, date, estimatedWorth, reason, 
+        phoneNumber, insuranceType, date, estimatedWorth, reason, 
         description, status, taskDate, taskNote}) =>{
         const newData = tableData.slice(0, tableData.length)
         newData[editIndex] = {policyNumber, title, firstName, surname, email, 
-            phoneNo, insuranceType, date, estimatedWorth, reason, 
+            phoneNumber, insuranceType, date, estimatedWorth, reason, 
             description, status, taskDate, taskNote}
 
         const filteredData = newData.filter (claim => claim.status !== "Accepted - Paid")
@@ -42,21 +58,20 @@ const OpenClaims = () => {
         setEditing(false)
         setEditIndex(false)
         setShowEdit(current => !current);
+        console.log("EditIndex", editIndex)
     }
 
     const [showEdit, setShowEdit] = useState(false);
-
-
 
     /* ==== Start of Add Notes ==== */
     const [editingNotes, setEditingNotes] = useState(false)
 
     const onUpdateNotes = ({policyNumber, title, firstName, surname, email, 
-      phoneNo, insuranceType, date, estimatedWorth, reason, 
+      phoneNumber, insuranceType, date, estimatedWorth, reason, 
       description, status, taskDate, taskNote}) =>{
       const newData = tableData.slice(0, tableData.length)
       newData[editIndex] = {policyNumber, title, firstName, surname, email, 
-          phoneNo, insuranceType, date, estimatedWorth, reason, 
+          phoneNumber, insuranceType, date, estimatedWorth, reason, 
           description, status, taskDate, taskNote}
 
       const filteredData = newData.filter (claim => claim.status !== "Accepted - Paid")
@@ -118,12 +133,13 @@ const OpenClaims = () => {
         }
         <div className="tableContainer">
         <h2 className="formTitle">Claims to be approved</h2>
+        {loading && <p style={{textAlign:"center"}}>The data is loading please wait...</p>}
         <h3 className="formSubTitle">See below for all currently opened claims:</h3>
         <table>
             <thead>
                 <tr>
                     <th>Policy</th>
-                    <th>Title</th>
+                    <th>Type</th>
                     <th>Forname</th>
                     <th>Surname</th>
                     <th>Status</th>
@@ -132,7 +148,8 @@ const OpenClaims = () => {
                 </tr>
             </thead>
             <tbody>
-                {tableData.map( (details, index) => (
+                {tableData.filter (claim => claim.status !== "Accepted - Paid" && claim.status !== "Rejected")
+                .map( (details, index) => (
                     <OpenClaimsRow details={details} key={index} index={index} onEdit={onEdit} hanldeClick={hanldeClick} onEditNotes={onEditNotes}/>
                 ))}
             </tbody>

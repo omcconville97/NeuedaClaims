@@ -4,7 +4,7 @@ const OpenClaimsRow = ({details, index, onEdit, hanldeClick, onEditNotes}) => {
     return (
         <tr>
             <td>{details.policyNumber}</td>
-            <td>{details.title}</td>
+            <td>{details.insuranceType}</td>
             <td>{details.firstName}</td>
             <td>{details.surname}</td>
             <td>{details.status}</td>

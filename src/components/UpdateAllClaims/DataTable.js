@@ -16,12 +16,12 @@ const DataTable = () => {
     
 
     const onSave = ({policyNumber, title, firstName, surname, email, 
-        phoneNo, insuranceType, date, estimatedWorth, reason, 
+        phoneNumber, insuranceType, date, estimatedWorth, reason, 
         description, status}) => {
         const newData = tableData.slice(0, tableData.length)
         newData.push({
             policyNumber, title, firstName, surname, email, 
-      phoneNo, insuranceType, date, estimatedWorth, reason, 
+      phoneNumber, insuranceType, date, estimatedWorth, reason, 
       description, status
         })
         setTableData(newData)
@@ -46,11 +46,11 @@ const DataTable = () => {
     }
 
     const onUpdate = ({policyNumber, title, firstName, surname, email, 
-        phoneNo, insuranceType, date, estimatedWorth, reason, 
+        phoneNumber, insuranceType, date, estimatedWorth, reason, 
         description, status}) =>{
         const newData = tableData.slice(0, tableData.length)
         newData[editIndex] = {policyNumber, title, firstName, surname, email, 
-            phoneNo, insuranceType, date, estimatedWorth, reason, 
+            phoneNumber, insuranceType, date, estimatedWorth, reason, 
             description, status}
         setTableData(newData)
         setEditing(false)

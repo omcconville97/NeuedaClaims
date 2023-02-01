@@ -7,7 +7,7 @@ const NewClaim = () => {
     const [message, setMessage] = useState("");
 
     const initialNewClaimState = {policyNumber : "", title: "",
-     firstName: "", surname: "", email: "",phoneNo:"", claimType: "", date: "", estimatedWorth:"", reason: "", description: "",
+     firstName: "", surname: "", email: "",phoneNumber:"", claimType: "", date: new Date().toISOString().slice(0,10), estimatedWorth:"", reason: "", description: "",
      insuranceType:"", vehicleMake:"", vehicleModel: "", vehicleYear: "", 
      propertyAddress: "",
      animalType:"", animalBreed:"",
@@ -52,30 +52,30 @@ const NewClaim = () => {
     const vehicleOption = showOptionvehicle && 
         <div>
         <p>Please complete further Vehicle Insurance Details:</p>
-            <label htmlFor="vehicleMake">Make of Vehicle</label>
+            <label htmlFor="vehicleMake">Make of Vehicle:</label>
             <input type="text" name="vehicleMake" id="vehicleMake" placeholder="Make" value={newClaim.vehicleMake} onChange={handleChange}/>
 
-            <label htmlFor="vehicleModel">Make of Vehicle</label>
+            <label htmlFor="vehicleModel">Make of Vehicle:</label>
             <input type="text" name="vehicleModel" id="vehicleModel" placeholder="Model" value={newClaim.vehicleModel} onChange={handleChange}/>
 
-            <label htmlFor="vehicleYear">Vehicle Year</label>
+            <label htmlFor="vehicleYear">Vehicle Year:</label>
             <input type="text" name="vehicleYear" id="vehicleYear" placeholder="Year" value={newClaim.vehicleYear} onChange={handleChange}/>
         </div>
 
     const homeOption = showOptionHome && 
         <div>
             <p>Please complete further Home Insurance details:</p>
-            <label htmlFor="propertyAddress">Address of property</label>
+            <label htmlFor="propertyAddress">Address of property:</label>
             <input type="text" name="propertyAddress" id="propertyAddress" placeholder="Address" value={newClaim.propertyAddress} onChange={handleChange}/>
         </div>
 
     const petOption = showOptionPet && 
         <div>
             <p>Please complete further Pet Insurance details:</p>
-            <label htmlFor="animalType">Type of Animal</label>
+            <label htmlFor="animalType">Type of Animal:</label>
             <input type="text" name="animalType" id="animalType" placeholder="e.g dog or cat" value={newClaim.animalType} onChange={handleChange}/>
 
-            <label htmlFor="animalBreed">Breed of Animal</label>
+            <label htmlFor="animalBreed">Breed of Animal:</label>
             <input type="text" name="animalBreed" id="animalBreed" placeholder="breed" value={newClaim.animalBreed} onChange={handleChange}/>
         </div>
     
@@ -87,14 +87,14 @@ const NewClaim = () => {
 
                     <label htmlFor="policyNumber">Policy Number:</label>
                     <input type="text" name="policyNumber" id="policyNumber" placeholder="Policy No." 
-                    value={newClaim.orderId} onChange={handleChange} />
+                    value={newClaim.policyNumber} onChange={handleChange} />
 
                     <label htmlFor="title">Title:</label>
                     <select name="title" id="title" value={newClaim.title} onChange={handleChange}>
                         <option value="" disabled >-- select --</option>
-                        <option value="mr">Mr</option>
-                        <option value="mrs">Mrs</option>
-                        <option value="ms">Ms</option>
+                        <option value="Mr">Mr</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Ms">Ms</option>
                     </select>
 
                     <label htmlFor="firstName">First Name:</label>
@@ -109,9 +109,9 @@ const NewClaim = () => {
                     <input type="text" name="email" id="email" placeholder="Email Address" 
                     value={newClaim.email} onChange={handleChange}/>
                     
-                    <label htmlFor="phoneNo">Phone Number:</label>
-                    <input type="text" name="phoneNo" id="phoneNo" placeholder="Phone No." 
-                    value={newClaim.phoneNo} onChange={handleChange}/>
+                    <label htmlFor="phoneNumber">Phone Number:</label>
+                    <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Phone No." 
+                    value={newClaim.phoneNumber} onChange={handleChange}/>
 
                     <label htmlFor="startDate">Start Date:</label>
                     <input type="date" name="startDate" id="startDate" 
@@ -121,21 +121,22 @@ const NewClaim = () => {
                     <input type="text" name="estimatedWorth" id="estimatedWorth" placeholder="£..." 
                     value={newClaim.estimatedWorth} onChange={handleChange}/>
 
-                    <label htmlFor="policyType">Policy Type:</label>
-                    <select name="policyType" id="policyType" value={additionalOption} type="text"
+                    <label htmlFor="insuranceType">Insurance Type:</label>
+                    <select name="insuranceType" id="insuranceType" value={additionalOption}
                     onChange={(e) => {
                         SetAdditionalOption(e.target.value);
-                        if (e.target.value === "1") {
+                        if (e.target.value === "vehicle") {
                             setShowOptionvehicle(true);
                             setShowOptionHome(false);
                             setShowOptionPet(false);
                             
                         }
-                        else if (e.target.value === "2"){
+                        else if (e.target.value === "home"){
                             setShowOptionvehicle(false);
                             setShowOptionHome(true);
                             setShowOptionPet(false);
-                        } else {
+                        } 
+                        else if(e.target.value === "pet"){
                             setShowOptionvehicle(false);
                             setShowOptionHome(false);
                             setShowOptionPet(true);
@@ -143,9 +144,9 @@ const NewClaim = () => {
                       }}
                     >
                         <option value="" disabled >-- select --</option>
-                        <option value="1">Vehicle</option>
-                        <option value="2">Home</option>
-                        <option value="3">Pet</option>
+                        <option value="vehicle">Vehicle</option>
+                        <option value="home">Home</option>
+                        <option value="pet">Pet</option>
                     </select>
 
                     {vehicleOption}
@@ -153,11 +154,10 @@ const NewClaim = () => {
                     {petOption}
 
                     <label htmlFor="reason">Reason:</label>
-                    <input type="text" name="reason" id="reason"
-                    value={newClaim.reason} onChange={handleChange}/>
+                    <input type="text" name="reason" id="reason" value={newClaim.reason} onChange={handleChange}/>
 
                     <label htmlFor="description">Description:</label>
-                    <textarea name="description" id="description" onChange={handleChange} cols="19" rows="4"></textarea>
+                    <textarea name="description" id="description" value={newClaim.description} onChange={handleChange} cols="19" rows="4"></textarea>
                     
                     <button type="submit" name="registerButton">Register</button>
                     <div>{message}</div> 

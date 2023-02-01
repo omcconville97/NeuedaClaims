@@ -11,7 +11,7 @@ useEffect( ()=> {
     if (params.policyNumber != null && params.policyNumber !== props.searchTerm) {
         props.setSearchTerm(params.policyNumber);
     }
-} , [params.policyNumber]);
+} , [params]);
 
 return (
     <>

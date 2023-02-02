@@ -58,7 +58,7 @@ const DisplayClaim = (props) => {
             setSelectedInsuranceType(insuranceType);
             loadData(insuranceType);
         }
-     }, [selectedInsuranceType, searchParams] );
+     }, [searchParams] );
 
     const changeInsuranceType = (insuranceType) => {
         setSearchParams({"insuranceType" : insuranceType});

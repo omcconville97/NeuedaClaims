@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 const initialState = {
-    insuranceType : [],
+    insuranceTypes : [],
     lastFetch : null,
 }
 
 const reducer = (state = initialState, action) => {
-    if (action.type === "updateInsuranceType") {
-        return {...state, insuranceType : action.value, lastFetch: new Date().getTime() }
+    if (action.type === "updateInsuranceTypes") {
+        return {...state, insuranceTypes : action.value, lastFetch: new Date().getTime() }
     } 
     return state;
 }

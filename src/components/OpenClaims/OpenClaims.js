@@ -15,9 +15,7 @@ const OpenClaims = () => {
   const loadDataAxios = () => {
     getAllClaimsAxios()
         .then(response => {
-            console.log("Response", response);
             const filtered = response.data.filter(claim => claim.status !== "Accepted - Paid" && claim.status !== "Rejected")
-            console.log("Response Filtered", filtered);
             setTableData(filtered);
             setLoading(false);
         })
@@ -37,7 +35,6 @@ const OpenClaims = () => {
         setEditIndex(index)
         setShowEdit(current => !current);
         setShowEditNotes(false)
-        console.log("onEdit", index);
     }
 
     const onCancel = () => {
@@ -58,7 +55,6 @@ const OpenClaims = () => {
         setEditing(false)
         setEditIndex(false)
         setShowEdit(current => !current);
-        console.log("EditIndex", editIndex)
     }
 
     const [showEdit, setShowEdit] = useState(false);
@@ -104,7 +100,6 @@ const OpenClaims = () => {
     const hanldeClick = (selectedRec) => {
     setSelectedData(selectedRec);
     setShow(true);
-    console.log("Modal",selectedRec)
     setShowEditNotes(false);
     setShowEdit(false)
     };
@@ -132,7 +127,7 @@ const OpenClaims = () => {
         data={editing ? tableData[editIndex]:{}}/>
         }
         <div className="tableContainer">
-        <h2 className="formTitle">Claims to be approved</h2>
+        <h2 className="formTitle">Claims to be Approved</h2>
         {loading && <p style={{textAlign:"center"}}>The data is loading please wait...</p>}
         <h3 className="formSubTitle">See below for all currently opened claims:</h3>
         <table>
@@ -159,6 +154,7 @@ const OpenClaims = () => {
         </>
     )
 }
+
 
 export default OpenClaims;
 

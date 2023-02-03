@@ -1,8 +1,9 @@
 import { FaEdit, FaStickyNote } from "react-icons/fa";
-const OpenClaimsRow = ({details, index, onEdit, hanldeClick, onEditNotes}) => {
+import { Link } from "react-router-dom";
+const OpenClaimsRow = ({details, hanldeClick}) => {
     
     return (
-        <tr>
+        <tr>    
             <td>{details.policyNumber}</td>
             <td>{details.insuranceType}</td>
             <td>{details.firstName}</td>
@@ -11,12 +12,8 @@ const OpenClaimsRow = ({details, index, onEdit, hanldeClick, onEditNotes}) => {
             <td><button onClick={() => hanldeClick(details)}className="tableButton" type="button" name="registerButton">Open</button></td>
             <td>
                 <div className="sideby">
-                <button className="actionButton" onClick={() => {
-                    onEdit(index)
-                }}><FaEdit /></button>
-                <button className="actionButton" onClick={() => {
-                    onEditNotes(index)
-                }}><FaStickyNote /></button>
+                <Link to={"/dataform/" + details.id}><button className="actionButton"><FaEdit /></button></Link>
+                <Link to={"/notesform/" + details.id}><button className="actionButton"><FaStickyNote /></button></Link>
                 </div>
             </td>
         </tr>

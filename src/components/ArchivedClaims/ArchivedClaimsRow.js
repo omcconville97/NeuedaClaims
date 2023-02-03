@@ -1,5 +1,4 @@
-import { FaStickyNote } from "react-icons/fa";
-const ArchivedClaimsRow = ({details, index, onEdit, hanldeClick, onEditNotes}) => {
+const ArchivedClaimsRow = ({details, hanldeClick}) => {
     
     return (
         <tr>
@@ -8,14 +7,8 @@ const ArchivedClaimsRow = ({details, index, onEdit, hanldeClick, onEditNotes}) =
             <td>{details.firstName}</td>
             <td>{details.surname}</td>
             <td>{details.status}</td>
+            <td>{details.taskNote}</td>
             <td><button onClick={() => hanldeClick(details)}className="tableButton" type="button" name="registerButton">Open</button></td>
-            <td>
-                <div className="sideby">
-                <button className="actionButton" onClick={() => {
-                    onEditNotes(index)
-                }}><FaStickyNote /></button>
-                </div>
-            </td>
         </tr>
     )
 }

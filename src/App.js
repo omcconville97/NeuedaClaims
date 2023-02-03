@@ -12,6 +12,9 @@ import FindDisplaysPage from './components/DisplayClaims/FindDisplaysPage';
 import NewClaim from './components/NewClaims/NewClaim';
 import ArchivedClaims from './components/ArchivedClaims/ArchivedClaims';
 import store from './store/store';
+import NotesForm from './components/NotesForm/NotesForm';
+import DataForm from './components/DataForm';
+
 
 function App() {
 
@@ -24,7 +27,9 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/newclaim" element={<NewClaim />} />
-            <Route path="/openclaims" element={<OpenClaims />} />
+            <Route path="/openclaims" element={<OpenClaims />} /> 
+            <Route path="/dataform/:id" element={<DataForm />} />
+            <Route path="/notesform/:id" element={<NotesForm />} />
             <Route path="/archiveclaims" element={<ArchivedClaims />} />
             <Route path="/find" element = {
             <FindDisplaysPage searchTerm={searchTerm} setSearchTerm={setSearchTerm} /> }

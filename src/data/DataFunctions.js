@@ -48,4 +48,12 @@ export const addNewClaim = (claim) => {
                 })
 }
 
+export const editExistingClaim = (claim, id) => {
+    return axios({url : "http://localhost:8080/api/claim/"+id,
+                    method: "PUT",
+                    headers: {"Accept" : "application/json", "Content-Type": "application/json"},
+                    data : claim
+                })
+}
+
 

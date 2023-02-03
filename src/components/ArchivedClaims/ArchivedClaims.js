@@ -105,8 +105,8 @@ const ArchivedClaims = () => {
                     <th>Forname</th>
                     <th>Surname</th>
                     <th>Status</th>
+                    <th>Reason</th>
                     <th>View More</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>

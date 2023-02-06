@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { getAllClaimsAxios } from "../../data/DataFunctions";
 import DataForm from "../DataForm";
 import DisplayModal from "../DisplayModal";
@@ -24,8 +25,18 @@ const OpenClaims = () => {
         });
     };
 
-    useEffect(() => loadDataAxios(), []);
-    
+    useEffect(() => {
+        loadDataAxios()
+    }, []);
+
+
+    /* ==== Update after change ==== */
+    const location = useLocation()
+    useEffect(() => {
+    loadDataAxios()
+    }, [location.key])
+    /* ==== Update after change ==== */
+
     const [editing, setEditing] = useState(false)
     const [editIndex, setEditIndex] = useState(false)
     

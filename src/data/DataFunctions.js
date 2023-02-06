@@ -15,6 +15,14 @@ export const getInsuranceType = ()  => {
             })
 }
 
+export const getStatusType = ()  => {
+    console.log("getStatusType")
+    return axios({url : "http://localhost:8080/api/status",
+            method: "GET", 
+            headers: {"Accept" : "application/json"}
+            })
+}
+
 export const getAllClaimsForInsuranceType  = (insuranceType) => {
     return axios({url : "http://localhost:8080/api/claim?insuranceType="+insuranceType,
             method: "GET", 
@@ -30,7 +38,7 @@ export const getAllClaimsForPolicyNumber  = (policyNumber) => {
 }
 
 
-export const getAllOpenClaims  = (status) => {
+export const getAllClaimsForStatusType  = (status) => {
     return axios({url : "http://localhost:8080/api/claim?status="+status,
             method: "GET", 
             headers: {"Accept" : "application/json"}

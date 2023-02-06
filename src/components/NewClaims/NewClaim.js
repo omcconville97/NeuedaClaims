@@ -8,9 +8,10 @@ const NewClaim = () => {
 
     const initialNewClaimState = {policyNumber : "", title: "",
      firstName: "", surname: "", email: "",phoneNumber:"", claimType: "", date: new Date().toISOString().slice(0,10), estimatedWorth:"", reason: "", description: "",
-     insuranceType:"", vehicleMake:"", vehicleModel: "", vehicleYear: "", 
+     insuranceType:"", vehicleMake:"", vehicleModel: "", vehicleYear: 0, 
      propertyAddress: "",
      animalType:"", animalBreed:"",
+     taskDate:new Date().toISOString().slice(0,10), taskNote:"",
      status: "Awaiting Assessment"}
 
      const formReducer = (state, data) => {
@@ -20,8 +21,6 @@ const NewClaim = () => {
     const [newClaim, dispatch] = useReducer(formReducer, initialNewClaimState);
  
     const handleChange = (event) => {
-        //event.target.id = the field
-       // event.target.value  = the value
        dispatch({field : event.target.id, value : event.target.value});
     }
 
@@ -122,21 +121,21 @@ const NewClaim = () => {
                     value={newClaim.estimatedWorth} onChange={handleChange}/>
 
                     <label htmlFor="insuranceType">Insurance Type:</label>
-                    <select name="insuranceType" id="insuranceType" value={additionalOption}
+                    <select name="insuranceType" id="insuranceType" value={newClaim.insuranceType = additionalOption}
                     onChange={(e) => {
                         SetAdditionalOption(e.target.value);
-                        if (e.target.value === "vehicle") {
+                        if (e.target.value === "Vehicle") {
                             setShowOptionvehicle(true);
                             setShowOptionHome(false);
                             setShowOptionPet(false);
                             
                         }
-                        else if (e.target.value === "home"){
+                        else if (e.target.value === "Home"){
                             setShowOptionvehicle(false);
                             setShowOptionHome(true);
                             setShowOptionPet(false);
                         } 
-                        else if(e.target.value === "pet"){
+                        else if(e.target.value === "Pet"){
                             setShowOptionvehicle(false);
                             setShowOptionHome(false);
                             setShowOptionPet(true);
@@ -144,9 +143,9 @@ const NewClaim = () => {
                       }}
                     >
                         <option value="" disabled >-- select --</option>
-                        <option value="vehicle">Vehicle</option>
-                        <option value="home">Home</option>
-                        <option value="pet">Pet</option>
+                        <option value="Vehicle">Vehicle</option>
+                        <option value="Home">Home</option>
+                        <option value="Pet">Pet</option>
                     </select>
 
                     {vehicleOption}

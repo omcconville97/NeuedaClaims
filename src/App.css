@@ -209,6 +209,10 @@ td {
   border: 2px solid #f00;
 }
 
+.btnCancel {
+  margin-left: 5px;
+}
+
 /* Media Sizing */
 @media only screen and (min-width: 768px) and (max-width: 1024) {
   .container {

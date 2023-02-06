@@ -7,6 +7,7 @@ function DataForm() {
     const navigate = useNavigate();
     const {id} = useParams(); // getting url id        
     const URL = `http://localhost:8080/api/claim/${id}`;
+
    
     useEffect(()=>{
         getClaim();
@@ -22,7 +23,7 @@ function DataForm() {
         date: "", 
         estimatedWorth: "", 
         reason: "", 
-        escription: "", 
+        description: "", 
         status: ""
     });
     const { policyNumber, title, firstName, surname, email, 
@@ -44,7 +45,7 @@ function DataForm() {
                 setClaim(response);
             })
             .catch(error => {
-                console.log("something went wrong", error);
+                console.log("something went wrong on data form", error);
             });
         };
     
@@ -54,9 +55,9 @@ function DataForm() {
     }
    
     return (
-        <div className="containerEdit">
+        <div className="container">
         <form onSubmit={e => FormHandle(e)}>
-        <div className="side-by-side">
+        <div className="sideby">
         <div>
             <div>
                 <label htmlFor="policyNumber">Policy Number:</label>

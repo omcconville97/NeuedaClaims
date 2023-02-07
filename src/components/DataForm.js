@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import {useState,useEffect} from 'react'
 import axios from 'axios';
 import {useNavigate, useParams} from "react-router-dom";
 import { editExistingClaim } from '../data/DataFunctions';
@@ -20,16 +20,40 @@ function DataForm() {
         email: "", 
         phoneNumber: "", 
         insuranceType: "", 
+        vehicleMake:"", vehicleModel: "", vehicleYear: 0, 
+        propertyAddress: "", animalType:"", animalBreed:"",
         date: "", 
         estimatedWorth: "", 
         reason: "", 
         description: "", 
         status: ""
     });
-    const { policyNumber, title, firstName, surname, email, 
-        phoneNumber, insuranceType, date, estimatedWorth, reason, 
+
+    const { policyNumber, title, firstName, surname, email, phoneNumber, 
+        insuranceType, vehicleMake, vehicleModel, vehicleYear,
+        propertyAddress, animalType, animalBreed, date, estimatedWorth, reason, 
         description, status} = claim;
+
     const onInputChange = e =>{
+        setClaim({...claim,[e.target.id]:e.target.value})
+    }
+    
+    const onInputChangeInsuranceType = e =>{
+        if (e.target.value === "Vehicle") {
+            setShowOptionvehicle(true);
+            setShowOptionHome(false);
+            setShowOptionPet(false);
+        }
+        else if (e.target.value === "Home"){
+            setShowOptionvehicle(false);
+            setShowOptionHome(true);
+            setShowOptionPet(false); 
+        } 
+        else if(e.target.value === "Pet"){
+            setShowOptionvehicle(false);
+            setShowOptionHome(false);
+            setShowOptionPet(true);
+        }
         setClaim({...claim,[e.target.id]:e.target.value})
     }
     
@@ -53,6 +77,37 @@ function DataForm() {
         const claimInfo = await axios.get(URL);
         setClaim(claimInfo.data);       
     }
+    
+    const [showOptionPet, setShowOptionPet] = useState(false);  
+    const [showOptionvehicle, setShowOptionvehicle] = useState(false);
+    const [showOptionHome, setShowOptionHome] = useState(false);   
+
+    const vehicleOption = showOptionvehicle && 
+        <div>
+            <label htmlFor="vehicleMake">Make of Vehicle:</label>
+            <input type="text" name="vehicleMake" id="vehicleMake" value={vehicleMake} onChange={(e) =>onInputChange(e)}/>
+            
+            <label htmlFor="vehicleModel">model of Vehicle:</label>
+            <input type="text" name="vehicleModel" id="vehicleModel" value={vehicleModel} onChange={(e) =>onInputChange(e)}/>
+
+            <label htmlFor="vehicleYear">Vehicle Year:</label>
+            <input type="text" name="vehicleYear" id="vehicleYear" value={vehicleYear} onChange={(e) =>onInputChange(e)}/>
+        </div>
+
+    const homeOption = showOptionHome && 
+        <div>
+            <label htmlFor="propertyAddress">Address of property:</label>
+            <input type="text" name="propertyAddress" id="propertyAddress" value={propertyAddress} onChange={(e) =>onInputChange(e)}/>
+        </div>
+
+    const petOption = showOptionPet && 
+        <div>
+            <label htmlFor="animalType">Type of Animal:</label>
+            <input type="text" name="animalType" id="animalType" value={animalType} onChange={(e) =>onInputChange(e)}/>
+
+            <label htmlFor="animalBreed">Breed of Animal:</label>
+            <input type="text" name="animalBreed" id="animalBreed" value={animalBreed} onChange={(e) =>onInputChange(e)}/>
+        </div>
    
     return (
         <div className="container">
@@ -65,7 +120,12 @@ function DataForm() {
             </div>
             <div>
                 <label htmlFor="title">Title:</label>
-                <input type="text" name="title" id="title" value={title} onChange={(e) =>onInputChange(e)} required/>
+                <select name="title" id="title" value={title} onChange={(e) =>onInputChange(e)} required>
+                    <option value="" disabled >-- select --</option>
+                    <option value="Mr">Mr</option>
+                    <option value="Mrs">Mrs</option>
+                    <option value="Ms">Ms</option>
+                </select>
             </div>
             <div>
                 <label htmlFor="firstName">Name:</label>
@@ -96,18 +156,31 @@ function DataForm() {
                 </select>
             </div>
         </div>
-        <div>
+        <div className="rightside">
                 <div>
                     <label htmlFor="insuranceType">Insurance Type:</label>
-                    <input type="text" name="insuranceType" id="insuranceType" value={insuranceType} onChange={(e) =>onInputChange(e)} required/>
+                    <select name="insuranceType" id="insuranceType" value={insuranceType} onChange={(e) =>onInputChangeInsuranceType(e)}
+                     required>
+                    <option value="" disabled >-- select --</option>
+                        <option value="Vehicle">Vehicle</option>
+                        <option value="Home">Home</option>
+                        <option value="Pet">Pet</option>
+                    </select>
+
+                    {vehicleOption}
+                    {homeOption}
+                    {petOption}
                 </div>
+
                 <div>
                     <label htmlFor="date">Start Date:</label>
-                    <input type="text" name="date" id="date" value={date} onChange={(e) =>onInputChange(e)} required/>
+                    <input type="date" name="date" id="date" value={date} onChange={(e) =>onInputChange(e)} required/>
                 </div>
                 <div>
                     <label htmlFor="estimatedWorth">Estimated Worth:</label>
-                    <input type="text" name="estimatedWorth" id="estimatedWorth" value={estimatedWorth} onChange={(e) =>onInputChange(e)} required/>
+                    <input name="estimatedWorth" id="estimatedWorth" value={estimatedWorth} 
+                    onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) {event.preventDefault();}}}
+                    onChange={(e) =>onInputChange(e)} required/>
                 </div>
                 <div>
                     <label htmlFor="reason">Breif Reason:</label>

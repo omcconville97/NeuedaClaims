@@ -26,6 +26,10 @@ body {
   justify-content: center;
   display: flex;
 }
+
+.rightside {
+  padding-left: 20px;
+}
 .btnSearch {
   margin-left: 10px;
 }

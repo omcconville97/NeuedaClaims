@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { getAllClaimsForInsuranceType, getAllClaimsForPolicyNumber } from "../../data/DataFunctions";
+import { getAllClaimsAxios, getAllClaimsForInsuranceType } from "../../data/DataFunctions";
 import './Display.css';
 import DisplayModal from "../DisplayModal";
 import InsuranceTypeSelector from "../InsuranceTypeSelector";
@@ -14,13 +14,18 @@ const DisplayClaim = (props) => {
 
     const [searchParams, setSearchParams] = useSearchParams();
 
-
     useEffect( () => {
         if(props.searchTerm !== "") {
             setIsLoading(true);
-            getAllClaimsForPolicyNumber(props.searchTerm)
+            getAllClaimsAxios()
                 .then( response => {
-                        setClaims(response.data);
+                    const claim = response.data.filter((claim) => {
+                        return (
+                            claim.policyNumber.includes(props.searchTerm) ||
+                            claim.surname.toLowerCase().includes(props.searchTerm.toLowerCase())
+                        );
+                    });
+                        setClaims(claim);
                         setIsLoading(false);
                 } )
                 .catch ( error => {
@@ -58,7 +63,7 @@ const DisplayClaim = (props) => {
             setSelectedInsuranceType(insuranceType);
             loadData(insuranceType);
         }
-     }, [searchParams] );
+     }, [searchParams, claims, selectedInsuranceType] );
 
     const changeInsuranceType = (insuranceType) => {
         setSearchParams({"insuranceType" : insuranceType});
@@ -103,7 +108,7 @@ const DisplayClaim = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {claims.filter(claim => props.searchTerm !== "" || claim.insuranceType === selectedInsuranceType)
+                        {claims
                         .map( (claim, index) =>{
                             return <DisplayClaimsRow claim={claim} key={index} index={index} 
                             policyNumber={claim.policyNumber} firstName={claim.firstName} surname={claim.surname} insuranceType={claim.insuranceType}

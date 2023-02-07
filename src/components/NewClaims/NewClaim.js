@@ -29,7 +29,7 @@ const NewClaim = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         setMessage("Saving...");
-        if (newClaim.estimatedWorth > 0) {
+        if (newClaim.estimatedWorth > 600) {
             setError(true)
             }
         addNewClaim(newClaim)
@@ -78,10 +78,10 @@ const NewClaim = () => {
         <div>
             <p>Please complete further Pet Insurance details:</p>
             <label htmlFor="animalType">Type of Animal:</label>
-            <input type="text" name="animalType" id="animalType" placeholder="e.g dog or cat" value={newClaim.animalType} onChange={handleChange}/>
+            <input type="text" name="animalType" id="animalType" placeholder="e.g. Dog or Cat" value={newClaim.animalType} onChange={handleChange}/>
 
             <label htmlFor="animalBreed">Breed of Animal:</label>
-            <input type="text" name="animalBreed" id="animalBreed" placeholder="breed" value={newClaim.animalBreed} onChange={handleChange}/>
+            <input type="text" name="animalBreed" id="animalBreed" placeholder="Breed" value={newClaim.animalBreed} onChange={handleChange}/>
         </div>
     
 
@@ -91,7 +91,7 @@ const NewClaim = () => {
                     <h2 className="formTitle">Create New Claim</h2>
 
                     <label htmlFor="policyNumber">Policy Number:</label>
-                    <input type="text" name="policyNumber" id="policyNumber" placeholder="Policy No." 
+                    <input type="text" name="policyNumber" id="policyNumber" placeholder="e.g. CF..." 
                     value={newClaim.policyNumber} onChange={handleChange} required/>
 
                     <label htmlFor="title">Title:</label>
@@ -118,12 +118,13 @@ const NewClaim = () => {
                     <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Phone No." 
                     value={newClaim.phoneNumber} onChange={handleChange} required/>
 
-                    <label htmlFor="startDate">Start Date:</label>
-                    <input type="date" name="startDate" id="startDate" 
+                    <label htmlFor="date">Start Date:</label>
+                    <input type="date" name="date" id="date" 
                     value={newClaim.date} onChange={handleChange} required/>
 
                     <label htmlFor="estimatedWorth">Claim Worth:</label>
-                    <input type="text" name="estimatedWorth" id="estimatedWorth" placeholder="£..." 
+                    <input name="estimatedWorth" id="estimatedWorth" placeholder="£..." 
+                    onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) {event.preventDefault();}}}
                     value={newClaim.estimatedWorth} onChange={handleChange} required/>
                     {error && <span className='error'>Claims over £600 have a higher chance of rejection by agents</span>}
 

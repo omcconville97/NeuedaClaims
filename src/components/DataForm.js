@@ -61,31 +61,31 @@ function DataForm() {
         <div>
             <div>
                 <label htmlFor="policyNumber">Policy Number:</label>
-                <input type="text" name="policyNumber" id="policyNumber" value={policyNumber} onChange={(e) =>onInputChange(e)}/>
+                <input type="text" name="policyNumber" id="policyNumber" value={policyNumber} onChange={(e) =>onInputChange(e)} required/>
             </div>
             <div>
                 <label htmlFor="title">Title:</label>
-                <input type="text" name="title" id="title" value={title} onChange={(e) =>onInputChange(e)}/>
+                <input type="text" name="title" id="title" value={title} onChange={(e) =>onInputChange(e)} required/>
             </div>
             <div>
                 <label htmlFor="firstName">Name:</label>
-                <input type="text" name="firstName" id="firstName" value={firstName} onChange={(e) =>onInputChange(e)}/>
+                <input type="text" name="firstName" id="firstName" value={firstName} onChange={(e) =>onInputChange(e)} required/>
             </div>
             <div>
                 <label htmlFor="surname">Surname:</label>
-                <input type="text" name="surname" id="surname" value={surname} onChange={(e) =>onInputChange(e)}/>
+                <input type="text" name="surname" id="surname" value={surname} onChange={(e) =>onInputChange(e)} required/>
             </div>
             <div>
                 <label htmlFor="email">Email:</label>
-                <input type="text" name="email" id="email" value={email} onChange={(e) =>onInputChange(e)}/>
+                <input type="email" name="email" id="email" value={email} onChange={(e) =>onInputChange(e)} required/>
             </div>
             <div>
                 <label htmlFor="phoneNumber">Phone Number:</label>
-                <input type="text" name="phoneNumber" id="phoneNumber" value={phoneNumber} onChange={(e) =>onInputChange(e)}/>
+                <input type="text" name="phoneNumber" id="phoneNumber" value={phoneNumber} onChange={(e) =>onInputChange(e)} required/>
             </div>
             <div>
                 <label htmlFor="status">Claim Status:</label>
-                <select name="status" id="status" value={status} onChange={(e) =>onInputChange(e)}>
+                <select name="status" id="status" value={status} onChange={(e) =>onInputChange(e)} required>
                     <option value="" disabled >-- select --</option>
                     <option value="Awaiting Assessment">Awaiting Assessment</option>
                     <option value="On Going">On Going</option>
@@ -99,19 +99,19 @@ function DataForm() {
         <div>
                 <div>
                     <label htmlFor="insuranceType">Insurance Type:</label>
-                    <input type="text" name="insuranceType" id="insuranceType" value={insuranceType} onChange={(e) =>onInputChange(e)}/>
+                    <input type="text" name="insuranceType" id="insuranceType" value={insuranceType} onChange={(e) =>onInputChange(e)} required/>
                 </div>
                 <div>
                     <label htmlFor="date">Start Date:</label>
-                    <input type="text" name="date" id="date" value={date} onChange={(e) =>onInputChange(e)}/>
+                    <input type="text" name="date" id="date" value={date} onChange={(e) =>onInputChange(e)} required/>
                 </div>
                 <div>
                     <label htmlFor="estimatedWorth">Estimated Worth:</label>
-                    <input type="text" name="estimatedWorth" id="estimatedWorth" value={estimatedWorth} onChange={(e) =>onInputChange(e)}/>
+                    <input type="text" name="estimatedWorth" id="estimatedWorth" value={estimatedWorth} onChange={(e) =>onInputChange(e)} required/>
                 </div>
                 <div>
                     <label htmlFor="reason">Breif Reason:</label>
-                    <input type="text" name="reason" id="reason" value={reason} onChange={(e) =>onInputChange(e)}/>
+                    <input type="text" name="reason" id="reason" value={reason} onChange={(e) =>onInputChange(e)} required/>
                 </div>
                 <div>
                     <label htmlFor="description">Description:</label>

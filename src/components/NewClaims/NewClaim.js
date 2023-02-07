@@ -24,9 +24,14 @@ const NewClaim = () => {
        dispatch({field : event.target.id, value : event.target.value});
     }
 
+    const [error, setError] = useState(false);
+
     const handleSubmit = (event) => {
         event.preventDefault();
         setMessage("Saving...");
+        if (newClaim.estimatedWorth > 0) {
+            setError(true)
+            }
         addNewClaim(newClaim)
             .then( response => {
                 if (response.status === 200) {
@@ -36,7 +41,8 @@ const NewClaim = () => {
                     setMessage("Something went wrong - status code was " + response.status);
                 }
                 
-            } )
+            } 
+            )
             .catch( error => {
                 setMessage("Something went wrong - " + error);
             })
@@ -86,10 +92,10 @@ const NewClaim = () => {
 
                     <label htmlFor="policyNumber">Policy Number:</label>
                     <input type="text" name="policyNumber" id="policyNumber" placeholder="Policy No." 
-                    value={newClaim.policyNumber} onChange={handleChange} />
+                    value={newClaim.policyNumber} onChange={handleChange} required/>
 
                     <label htmlFor="title">Title:</label>
-                    <select name="title" id="title" value={newClaim.title} onChange={handleChange}>
+                    <select name="title" id="title" value={newClaim.title} onChange={handleChange} required>
                         <option value="" disabled >-- select --</option>
                         <option value="Mr">Mr</option>
                         <option value="Mrs">Mrs</option>
@@ -98,30 +104,31 @@ const NewClaim = () => {
 
                     <label htmlFor="firstName">First Name:</label>
                     <input type="text" name="firstName" id="firstName" placeholder="First Name" 
-                    value={newClaim.firstName} onChange={handleChange}/>
+                    value={newClaim.firstName} onChange={handleChange} required/>
 
                     <label htmlFor="surname">Surname:</label>
                     <input type="text" name="surname" id="surname" placeholder="Surname" 
-                    value={newClaim.surname} onChange={handleChange}/>
+                    value={newClaim.surname} onChange={handleChange} required/>
 
                     <label htmlFor="email">Email:</label>
-                    <input type="text" name="email" id="email" placeholder="Email Address" 
-                    value={newClaim.email} onChange={handleChange}/>
+                    <input type="email" name="email" id="email" placeholder="Email Address" 
+                    value={newClaim.email} onChange={handleChange} required/>
                     
                     <label htmlFor="phoneNumber">Phone Number:</label>
                     <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Phone No." 
-                    value={newClaim.phoneNumber} onChange={handleChange}/>
+                    value={newClaim.phoneNumber} onChange={handleChange} required/>
 
                     <label htmlFor="startDate">Start Date:</label>
                     <input type="date" name="startDate" id="startDate" 
-                    value={newClaim.date} onChange={handleChange}/>
+                    value={newClaim.date} onChange={handleChange} required/>
 
                     <label htmlFor="estimatedWorth">Claim Worth:</label>
                     <input type="text" name="estimatedWorth" id="estimatedWorth" placeholder="£..." 
-                    value={newClaim.estimatedWorth} onChange={handleChange}/>
+                    value={newClaim.estimatedWorth} onChange={handleChange} required/>
+                    {error && <span className='error'>Claims over £600 have a higher chance of rejection by agents</span>}
 
                     <label htmlFor="insuranceType">Insurance Type:</label>
-                    <select name="insuranceType" id="insuranceType" value={newClaim.insuranceType = additionalOption}
+                    <select name="insuranceType" id="insuranceType" value={newClaim.insuranceType = additionalOption} required
                     onChange={(e) => {
                         SetAdditionalOption(e.target.value);
                         if (e.target.value === "Vehicle") {
@@ -153,7 +160,7 @@ const NewClaim = () => {
                     {petOption}
 
                     <label htmlFor="reason">Reason:</label>
-                    <input type="text" name="reason" id="reason" value={newClaim.reason} onChange={handleChange}/>
+                    <input type="text" name="reason" id="reason" value={newClaim.reason} onChange={handleChange} required/>
 
                     <label htmlFor="description">Description:</label>
                     <textarea name="description" id="description" value={newClaim.description} onChange={handleChange} cols="19" rows="4"></textarea>

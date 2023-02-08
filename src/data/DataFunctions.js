@@ -65,3 +65,23 @@ export const editExistingClaim = (claim, id) => {
 }
 
 
+//Task
+export const getAllTasks  = () => {
+    return axios({url : "http://localhost:8080/api/task",
+            method: "GET", 
+            headers: {"Accept" : "application/json"}
+            })
+}
+export const addNewTask = (task) => {
+    return axios({url : "http://localhost:8080/api/task",
+                    method: "POST",
+                    headers: {"Accept" : "application/json", "Content-Type": "application/json"},
+                    data : task
+                })
+}
+export const deleteTaskAxios = (id) => {
+    return axios({url : "http://localhost:8080/api/task/"+id,
+                    method: "DELETE",
+                    headers: {"Accept" : "application/json", "Content-Type": "application/json"}
+                })
+}

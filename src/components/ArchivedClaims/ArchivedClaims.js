@@ -15,7 +15,7 @@ const ArchivedClaims = () => {
     const loadDataAxios = () => {
     getAllClaimsAxios()
         .then(response => {
-            const filtered = response.data.filter(claim => claim.status === "Accepted - Paid" || claim.status === "Rejected")
+            const filtered = response.data.filter(claim => claim.status === "Accepted - Paid" || claim.status === "Rejected" || claim.status ==="Value too high")
             setTableData(filtered);
             setLoading(false);
         })
@@ -45,7 +45,7 @@ const ArchivedClaims = () => {
           phoneNumber, insuranceType, date, estimatedWorth, reason, 
           description, status, taskDate, taskNote}
 
-      const filteredData = newData.filter (claim => claim.status === "Accepted - Paid" || claim.status === "Rejected")
+      const filteredData = newData.filter (claim => claim.status === "Accepted - Paid" || claim.status === "Rejected" || claim.status ==="Value too high")
       setTableData(filteredData)
       setEditingNotes(false)
       setEditIndex(false)
@@ -110,7 +110,7 @@ const ArchivedClaims = () => {
                 </tr>
             </thead>
             <tbody>
-                {tableData.filter(claim => claim.status === "Accepted - Paid" || claim.status === "Rejected")
+                {tableData.filter(claim => claim.status === "Accepted - Paid" || claim.status === "Rejected" || claim.status ==="Value too high")
                 .map( (details, index) => (
                     <ArchivedClaimsRow details={details} key={index} index={index} onEdit={onEdit} hanldeClick={hanldeClick} onEditNotes={onEditNotes}/>
                 ))}

@@ -9,21 +9,24 @@ const AddTask = () => {
 
   const initialNewTaskState = {taskPolicyNo : "", taskNote: "", completed: false}
 
-     const formReducer = (state, data) => {
-        return {...state, [data.field] : data.value}
-    }
-    const [newTask, dispatch] = useReducer(formReducer, initialNewTaskState);
+  const formReducer = (state, data) => {
+    return {...state, [data.field] : data.value}
+  }
 
-    const handleChange = (event) => {
-      dispatch({field : event.target.id, value : event.target.value});
-   }
+  const [newTask, dispatch] = useReducer(formReducer, initialNewTaskState);
 
-   const handleSubmit = (event) => {
+  const handleChange = (event) => {
+    dispatch({field : event.target.id, value : event.target.value});
+   
+  }
+
+  const handleSubmit = (event) => {
     event.preventDefault();
     addNewTask(newTask)
         .then( response => {
             if (response.status === 200) {
                 setMessage("New Task added with id " + response.data.id);
+                loadTaskData()
             }
             else {
                 setMessage("Something went wrong - status code was " + response.status);
@@ -48,7 +51,9 @@ const loadTaskData = () => {
       });
   };
 
-  useEffect(() => loadTaskData(), []); //implement callback
+  useEffect(() => {
+    loadTaskData()
+  }, []);
 
   const completeTask = (id) => {
     setTableData(tableData.map((task) => {

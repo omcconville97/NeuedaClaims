@@ -1,6 +1,5 @@
 
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { getAllClaimsAxios } from "../../data/DataFunctions";
 import DataForm from "../DataForm";
 import DisplayModal from "../DisplayModal";
@@ -29,13 +28,9 @@ const OpenClaims = () => {
         loadDataAxios()
     }, []);
 
-
-    /* ==== Update after change ==== */
-    const location = useLocation()
     useEffect(() => {
-    loadDataAxios()
-    }, [location.key])
-    /* ==== Update after change ==== */
+        loadDataAxios()
+    }, [tableData.id]);
 
     const [editing, setEditing] = useState(false)
     const [editIndex, setEditIndex] = useState(false)
@@ -154,7 +149,7 @@ const OpenClaims = () => {
                 </tr>
             </thead>
             <tbody>
-                {tableData.filter (claim => claim.status !== "Accepted - Paid" && claim.status !== "Rejected")
+                {tableData.filter (claim => claim.status !== "Accepted - Paid" && claim.status !== "Rejected" && claim.status !=="Value too high")
                 .map( (details, index) => (
                     <OpenClaimsRow details={details} key={index} index={index} onEdit={onEdit} hanldeClick={hanldeClick} onEditNotes={onEditNotes}/>
                 ))}

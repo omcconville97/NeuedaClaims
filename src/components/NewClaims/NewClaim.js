@@ -116,6 +116,7 @@ const NewClaim = () => {
                     
                     <label htmlFor="phoneNumber">Phone Number:</label>
                     <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Phone No." 
+                    onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) {event.preventDefault();}}}
                     value={newClaim.phoneNumber} onChange={handleChange} required/>
 
                     <label htmlFor="date">Start Date:</label>

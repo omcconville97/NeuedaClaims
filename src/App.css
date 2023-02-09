@@ -42,7 +42,7 @@ form p {
 }
 
 form label {
-  width: 300px;
+  width: 240px;
   display: block;
   float: left;
   margin-right: 10px;
@@ -164,6 +164,11 @@ td {
   left: 44%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+
+.modalContainer span {
+  font-weight: bold;
+  display: inline;
 }
 
 .closeBtn {

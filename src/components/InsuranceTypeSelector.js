@@ -15,16 +15,13 @@ const InsuranceTypeSelector = (props) => {
     const timeOfLastFetch = useSelector( state => state.lastFetch);
     const dispatch = useDispatch();
 
-
     const loadInsuranceTypes = () => {
-
         //do we have any insuranceTypes in redux?
         if(insuranceTypesInRedux.length > 0 && new Date().getTime() - timeOfLastFetch < 60000) {
             console.log("using insuranceTypes from redux");
             setUniqueInsuranceTypes(insuranceTypesInRedux);
             setIsLoading(false);
         }
-        
         //if we do, use them, if not, get them from rest + save them in redux
         else {
         console.log("getting insurance types via rest");
@@ -43,7 +40,6 @@ const InsuranceTypeSelector = (props) => {
                 console.log("something went wrong", error)
             })
         }
-
         if (props.value != null) {
             setSelectedInsuranceType(props.value);
         }
@@ -62,8 +58,6 @@ const InsuranceTypeSelector = (props) => {
                     {uniqueInsuranceTypes.map (insuranceType => <option key={insuranceType} value={insuranceType}>{insuranceType}</option>)}
                 </select>
             </div>)
-
-
 }
 
 export default InsuranceTypeSelector;

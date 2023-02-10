@@ -1,4 +1,3 @@
-import './NewClaim.css'
 import { useReducer, useState } from "react";
 import { addNewClaim } from "../../data/DataFunctions";
 
@@ -24,13 +23,11 @@ const NewClaim = () => {
        dispatch({field : event.target.id, value : event.target.value});
     }
 
-    const [error, setError] = useState(false);
-
     const handleSubmit = (event) => {
         event.preventDefault();
         setMessage("Saving...");
-        if (newClaim.estimatedWorth > 600) {
-            setError(true)
+        if (newClaim.estimatedWorth > 500) {
+            alert("Small Claims Application: Claims over £500 have a higher chance of rejection by agents")
             }
         addNewClaim(newClaim)
             .then( response => {
@@ -60,11 +57,13 @@ const NewClaim = () => {
             <label htmlFor="vehicleMake">Make of Vehicle:</label>
             <input type="text" name="vehicleMake" id="vehicleMake" placeholder="Make" value={newClaim.vehicleMake} onChange={handleChange}/>
 
-            <label htmlFor="vehicleModel">Make of Vehicle:</label>
+            <label htmlFor="vehicleModel">Model of Vehicle:</label>
             <input type="text" name="vehicleModel" id="vehicleModel" placeholder="Model" value={newClaim.vehicleModel} onChange={handleChange}/>
 
             <label htmlFor="vehicleYear">Vehicle Year:</label>
-            <input type="text" name="vehicleYear" id="vehicleYear" placeholder="Year" value={newClaim.vehicleYear} onChange={handleChange}/>
+            <input type="text" name="vehicleYear" id="vehicleYear" placeholder="Year" 
+             onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) {event.preventDefault();}}}
+             value={newClaim.vehicleYear} onChange={handleChange}/>
         </div>
 
     const homeOption = showOptionHome && 
@@ -127,7 +126,6 @@ const NewClaim = () => {
                     <input name="estimatedWorth" id="estimatedWorth" placeholder="£..." 
                     onKeyPress={(event) => { if (!/[0-9]/.test(event.key)) {event.preventDefault();}}}
                     value={newClaim.estimatedWorth} onChange={handleChange} required/>
-                    {error && <span className='error'>Claims over £600 have a higher chance of rejection by agents</span>}
 
                     <label htmlFor="insuranceType">Insurance Type:</label>
                     <select name="insuranceType" id="insuranceType" value={newClaim.insuranceType = additionalOption} required

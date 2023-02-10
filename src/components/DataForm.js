@@ -8,10 +8,10 @@ function DataForm() {
     const {id} = useParams(); // getting url id        
     const URL = `http://localhost:8080/api/claim/${id}`;
 
-   
     useEffect(()=>{
         getClaim();
     },[])
+    
     const [claim, setClaim] = useState({
         policyNumber: "", 
         title: "", 

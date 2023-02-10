@@ -1,9 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { getAllClaimsAxios } from "../../data/DataFunctions";
-import DataForm from "../DataForm";
 import DisplayModal from "../DisplayModal";
-import NotesForm from "../NotesForm/NotesForm";
 import OpenClaimsRow from "./OpenClaimsRow";
 
 
@@ -32,72 +30,6 @@ const OpenClaims = () => {
         loadDataAxios()
     }, [tableData.id]);
 
-    const [editing, setEditing] = useState(false)
-    const [editIndex, setEditIndex] = useState(false)
-    
-
-    const onEdit = (index) => {
-        setEditing(true)
-        setEditIndex(index)
-        setShowEdit(current => !current);
-        setShowEditNotes(false)
-    }
-
-    const onCancel = () => {
-        setEditing(false)
-        setShowEdit(current => !current);
-    }
-
-    const onUpdate = ({policyNumber, title, firstName, surname, email, 
-        phoneNumber, insuranceType, date, estimatedWorth, reason, 
-        description, status, taskDate, taskNote}) =>{
-        const newData = tableData.slice(0, tableData.length)
-        newData[editIndex] = {policyNumber, title, firstName, surname, email, 
-            phoneNumber, insuranceType, date, estimatedWorth, reason, 
-            description, status, taskDate, taskNote}
-
-        const filteredData = newData.filter (claim => claim.status !== "Accepted - Paid")
-        setTableData(filteredData)
-        setEditing(false)
-        setEditIndex(false)
-        setShowEdit(current => !current);
-    }
-
-    const [showEdit, setShowEdit] = useState(false);
-
-    /* ==== Start of Add Notes ==== */
-    const [editingNotes, setEditingNotes] = useState(false)
-
-    const onUpdateNotes = ({policyNumber, title, firstName, surname, email, 
-      phoneNumber, insuranceType, date, estimatedWorth, reason, 
-      description, status, taskDate, taskNote}) =>{
-      const newData = tableData.slice(0, tableData.length)
-      newData[editIndex] = {policyNumber, title, firstName, surname, email, 
-          phoneNumber, insuranceType, date, estimatedWorth, reason, 
-          description, status, taskDate, taskNote}
-
-      const filteredData = newData.filter (claim => claim.status !== "Accepted - Paid")
-      setTableData(filteredData)
-      setEditingNotes(false)
-      setEditIndex(false)
-      setShowEditNotes(current => !current);
-  }
-
-    const onCancelNotes = () => {
-      setEditingNotes(false)
-      setShowEditNotes(current => !current);
-  }
-
-    const onEditNotes = (index) => {
-      setEditingNotes(true)
-      setEditIndex(index)
-      setShowEditNotes(current => !current);
-      setShowEdit(false)
-  }
-
-    const [showEditNotes, setShowEditNotes] = useState(false);
-    /* ==== End of Add Notes ==== */
-
 
     /* ==== Start of Modal ==== */
     const [show, setShow] = useState(false);
@@ -106,8 +38,6 @@ const OpenClaims = () => {
     const hanldeClick = (selectedRec) => {
     setSelectedData(selectedRec);
     setShow(true);
-    setShowEditNotes(false);
-    setShowEdit(false)
     };
 
     const hideModal = () => {
@@ -115,23 +45,8 @@ const OpenClaims = () => {
     };
     /* ==== End of Modal ==== */
 
-
     return (
         <>
-        {showEditNotes &&
-        <NotesForm 
-        onCancel={onCancelNotes}
-        onUpdate={onUpdateNotes}
-        update={editingNotes}
-        data={editingNotes ? tableData[editIndex]:{}}/>
-        }
-        {showEdit &&
-        <DataForm 
-        onCancel={onCancel}
-        onUpdate={onUpdate}
-        update={editing}
-        data={editing ? tableData[editIndex]:{}}/>
-        }
         <div className="tableContainer">
         <h2 className="formTitle">Claims to be Approved</h2>
         {loading && <p style={{textAlign:"center"}}>The data is loading please wait...</p>}
@@ -151,7 +66,7 @@ const OpenClaims = () => {
             <tbody>
                 {tableData.filter (claim => claim.status !== "Accepted - Paid" && claim.status !== "Rejected" && claim.status !=="Value too high")
                 .map( (details, index) => (
-                    <OpenClaimsRow details={details} key={index} index={index} onEdit={onEdit} hanldeClick={hanldeClick} onEditNotes={onEditNotes}/>
+                    <OpenClaimsRow details={details} key={index} index={index} hanldeClick={hanldeClick} />
                 ))}
             </tbody>
         </table>
@@ -160,7 +75,6 @@ const OpenClaims = () => {
         </>
     )
 }
-
 
 export default OpenClaims;
 

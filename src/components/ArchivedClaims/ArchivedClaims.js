@@ -101,10 +101,10 @@ const ArchivedClaims = () => {
             <thead>
                 <tr>
                     <th>Policy</th>
-                    <th>Title</th>
                     <th>Forname</th>
                     <th>Surname</th>
                     <th>Status</th>
+                    <th>Value</th>
                     <th>Reason</th>
                     <th>View More</th>
                 </tr>
